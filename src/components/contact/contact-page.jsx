@@ -26,7 +26,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    details: ['info@absadmultisynergy.com', 'sales@absadmultisynergy.com'],
+    details: ['contact@absadmultisynergy.com', 'sales@absadmultisynergy.com'],
     description: 'Send us an email anytime'
   },
   {
@@ -289,7 +289,7 @@ export function ContactPage() {
                 Call Now
               </a>
               <a
-                href="mailto:info@absadmultisynergy.com"
+                href="mailto:contact@absadmultisynergy.com"
                 className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary transition-colors duration-200"
               >
                 <Mail className="mr-2 h-5 w-5" />

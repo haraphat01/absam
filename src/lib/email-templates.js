@@ -316,7 +316,7 @@ export const generateWelcomeEmailTemplate = (customerName, customerEmail) => {
           <div class="cta-section">
             <h3 class="cta-title">Ready to Get Started?</h3>
             <p class="cta-text">Contact our team today to discuss your requirements and receive a personalized quote.</p>
-            <p><strong>📧 Email:</strong> info@absadmultisynergy.com</p>
+            <p><strong>📧 Email:</strong> contact@absadmultisynergy.com</p>
             <p><strong>📞 Phone:</strong> +234 123 456 7890</p>
           </div>
 
@@ -468,7 +468,7 @@ export const generateQuoteFollowUpTemplate = (customerName, quoteDetails) => {
 
           <div class="footer">
             <p><strong>Ready to move forward?</strong></p>
-            <p>Contact us today: info@absadmultisynergy.com | +234 123 456 7890</p>
+            <p>Contact us today: contact@absadmultisynergy.com | +234 123 456 7890</p>
             <p><strong>The Absad MultiSynergy Team</strong></p>
           </div>
         </div>
@@ -494,7 +494,7 @@ Next Steps:
 We're committed to providing you with the best possible service and competitive pricing. Your business is important to us, and we're here to support your success.
 
 Ready to move forward?
-Contact us today: info@absadmultisynergy.com | +234 123 456 7890
+Contact us today: contact@absadmultisynergy.com | +234 123 456 7890
 
 The Absad MultiSynergy Team
     `

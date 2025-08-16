@@ -142,7 +142,7 @@ export async function POST(request) {
               <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280; font-size: 14px;">
                 <p><strong>Best regards,</strong></p>
                 <p><strong>The Absad MultiSynergy Team</strong></p>
-                <p>Email: info@absadmultisynergy.com | Phone: +2347018222950</p>
+                <p>Email: contact@absadmultisynergy.com | Phone: +2347018222950</p>
               </div>
             </div>
           `,
@@ -154,7 +154,7 @@ ${customMessage}
 Best regards,
 The Absad MultiSynergy Team
 
-Email: info@absadmultisynergy.com
+Email: contact@absadmultisynergy.com
 Phone: +2347018222950
           `,
           emailType: EMAIL_TYPES.GENERAL,

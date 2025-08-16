@@ -558,7 +558,7 @@ export default function Home() {
                     <p className="text-muted-foreground text-lg font-medium">Send us your inquiries</p>
                   </div>
                   <div className="space-y-3">
-                    <a href="mailto:info@absadmultisynergy.com" className="block text-xl font-bold text-primary hover:text-primary/80 transition-colors">
+                    <a href="mailto:contact@absadmultisynergy.com" className="block text-xl font-bold text-primary hover:text-primary/80 transition-colors">
                       contact@absadmultisynergy.com
                     </a>
                    
