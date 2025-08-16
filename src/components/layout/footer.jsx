@@ -137,7 +137,7 @@ export function Footer() {
                 <div className="flex items-start space-x-4 bg-primary/5 rounded-xl p-4 border border-primary/20 hover:bg-primary/10 transition-colors duration-300">
                   <Phone className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-white font-bold">+234 123 456 7890</p>
+                    <p className="text-white font-bold">+2347018222950</p>
                     <p className="text-slate-300 text-sm">Mon-Fri 8AM-6PM WAT</p>
                   </div>
                 </div>

@@ -142,7 +142,7 @@ export async function POST(request) {
               <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280; font-size: 14px;">
                 <p><strong>Best regards,</strong></p>
                 <p><strong>The Absad MultiSynergy Team</strong></p>
-                <p>Email: info@absadmultisynergy.com | Phone: +234 123 456 7890</p>
+                <p>Email: info@absadmultisynergy.com | Phone: +2347018222950</p>
               </div>
             </div>
           `,

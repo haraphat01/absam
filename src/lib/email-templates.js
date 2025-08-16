@@ -346,8 +346,8 @@ Our Services:
 Ready to Get Started?
 Contact our team today to discuss your requirements and receive a personalized quote.
 
-Email: info@absadmultisynergy.com
-Phone: +234 123 456 7890
+Email: contact@absadmultisynergy.com
+Phone: +2347018222950
 
 We look forward to building a successful and long-lasting business relationship with you.
 
