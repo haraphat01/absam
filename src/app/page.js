@@ -49,7 +49,7 @@ export default function Home() {
                 </h1>
                 
                 <p className="text-2xl lg:text-3xl text-slate-200 leading-relaxed max-w-2xl font-medium">
-                  Nigeria's leading supplier of premium charcoal and firewood with reliable global logistics. 
+                  Nigeria&apos;s leading supplier of premium charcoal and firewood with reliable global logistics. 
                   Your trusted partner for quality products and seamless international trade.
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function Home() {
                     <div>
                       <h3 className="text-4xl font-black text-white">Absad MultiSynergy</h3>
                       <p className="text-2xl text-slate-200 font-bold">Limited</p>
-                      <p className="text-sm text-slate-300 mt-3 font-medium">RC: 1234567 • CAC Certified</p>
+                      <p className="text-sm text-slate-300 mt-3 font-medium">RC NO:7680601  • CAC Certified</p>
                     </div>
                     <div className="flex items-center justify-center space-x-6 text-sm">
                       <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
@@ -141,7 +141,7 @@ export default function Home() {
                     <Award className="h-8 w-8 text-white" />
                   </div>
                   <Badge className="bg-gradient-to-r from-green-100 to-green-200 text-green-800 border-green-300 px-6 py-3 text-sm font-bold shadow-elegant">
-                    CAC Certified • RC: 1234567
+                    CAC Certified • RC: 7680601
                   </Badge>
                 </div>
                 
@@ -230,7 +230,7 @@ export default function Home() {
                       <h3 className="text-3xl font-black text-foreground">CAC Certified</h3>
                       <p className="text-muted-foreground text-lg font-medium">Corporate Affairs Commission</p>
                       <div className="inline-block bg-gradient-to-r from-green-100 to-green-200 text-green-800 px-6 py-3 rounded-full text-sm font-bold shadow-elegant">
-                        RC: 1234567
+                        RC: 7680601
                       </div>
                     </div>
                     
@@ -241,7 +241,7 @@ export default function Home() {
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-slate-100">
                         <span className="text-muted-foreground font-medium">Registration Date:</span>
-                        <span className="font-bold text-foreground">2020</span>
+                        <span className="font-bold text-foreground">2024</span>
                       </div>
                       <div className="flex justify-between items-center py-3 border-b border-slate-100">
                         <span className="text-muted-foreground font-medium">Business Type:</span>
@@ -586,8 +586,8 @@ export default function Home() {
                   </div>
                   <div className="space-y-3">
                     <address className="text-xl font-bold text-foreground not-italic leading-relaxed">
-                      123 Business District<br />
-                      Lagos, Nigeria
+                     
+                      Jebba, Kwara State, Nigeria
                     </address>
                   </div>
                   <p className="text-sm text-muted-foreground font-medium">

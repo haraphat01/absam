@@ -136,7 +136,7 @@ export function CompanySettingsPage() {
                 <CardTitle>Banking Details</CardTitle>
               </div>
               <CardDescription>
-                Configure your company's banking information for invoice payments. 
+                Configure your company&apos;s banking information for invoice payments. 
                 These details will be automatically included in all generated invoices.
               </CardDescription>
             </CardHeader>

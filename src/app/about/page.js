@@ -245,7 +245,7 @@ export default function AboutPage() {
                 </h2>
                 
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  By 2030, we envision Absad MultiSynergy Limited as Africa's leading export company, 
+                  By 2030, we envision Absad MultiSynergy Limited as Africa&apos;s leading export company, 
                   recognized globally for our commitment to quality, innovation, and sustainable business practices 
                   that benefit communities and the environment.
                 </p>
@@ -634,12 +634,12 @@ export default function AboutPage() {
                 Ready to Partner With Us?
               </Badge>
               <h2 className="text-4xl lg:text-6xl font-bold leading-tight">
-                Let's Build the Future
+                Let&apos;s Build the Future
                 <span className="block">Together</span>
               </h2>
               <p className="text-xl lg:text-2xl text-white/90 leading-relaxed">
-                Whether you're looking for premium products, investment opportunities, or strategic partnerships, 
-                we're here to help you succeed in the global marketplace.
+                Whether you&apos;re looking for premium products, investment opportunities, or strategic partnerships, 
+                we&apos;re here to help you succeed in the global marketplace.
               </p>
             </div>
             

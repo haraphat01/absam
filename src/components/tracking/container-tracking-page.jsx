@@ -71,7 +71,7 @@ export function ContainerTrackingPage() {
               </h1>
               
               <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
-                Monitor your container's journey in real-time with our advanced tracking system. 
+                Monitor your container&apos;s journey in real-time with our advanced tracking system. 
                 Get instant updates on location, status, and estimated delivery times.
               </p>
             </div>
@@ -153,7 +153,7 @@ export function ContainerTrackingPage() {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Our comprehensive tracking system provides detailed insights into your container's journey
+              Our comprehensive tracking system provides detailed insights into your container&apos;s journey
             </p>
           </div>
 

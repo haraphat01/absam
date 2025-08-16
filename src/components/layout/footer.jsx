@@ -151,7 +151,7 @@ export function Footer() {
                 <div className="flex items-start space-x-4 bg-accent/5 rounded-xl p-4 border border-accent/20 hover:bg-accent/10 transition-colors duration-300">
                   <MapPin className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-white font-bold">Lagos, Nigeria</p>
+                    <p className="text-white font-bold">Jebba, Kwara State, Nigeria</p>
                     <p className="text-slate-300 text-sm">West Africa Hub</p>
                   </div>
                 </div>

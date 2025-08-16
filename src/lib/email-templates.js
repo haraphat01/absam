@@ -130,9 +130,9 @@ export const generateContactResponseTemplate = (inquiry, responseMessage) => {
             <p><strong>The Absad MultiSynergy Team</strong></p>
             
             <div class="contact-info">
-              <p>📧 Email: info@absadmultisynergy.com</p>
-              <p>📞 Phone: +234 123 456 7890</p>
-              <p>📍 Address: Lagos, Nigeria</p>
+              <p>📧 Email: contact@absadmultisynergy.com</p>
+              <p>📞 Phone: +2347018222950</p>
+              <p>📍 Address: Jebba, Kwara State, Nigeria</p>
               <p>🌐 Website: www.absadmultisynergy.com</p>
             </div>
           </div>
@@ -156,9 +156,9 @@ Best regards,
 The Absad MultiSynergy Team
 
 Contact Information:
-Email: info@absadmultisynergy.com
-Phone: +234 123 456 7890
-Address: Lagos, Nigeria
+Email: contact@absadmultisynergy.com
+Phone: +2347018222950
+Address: Jebba, Kwara State, Nigeria
 Website: www.absadmultisynergy.com
     `
   }

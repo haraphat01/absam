@@ -64,7 +64,7 @@ export default function AdminDashboard() {
           <div>
             <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
             <p className="text-muted-foreground">
-              Welcome back, {userProfile?.email?.split('@')[0]}! Here's what's happening with your business.
+              Welcome back, {userProfile?.email?.split('@')[0]}! Here&apos;s what&apos;s happening with your business.
             </p>
           </div>
           {isRefetching && (

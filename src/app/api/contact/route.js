@@ -4,7 +4,7 @@ import { createServerClient } from '@/lib/supabase'
 import { emailService, EMAIL_TYPES } from '@/lib/email-service'
 import { withRateLimit, sanitize } from '@/lib/security'
 
-async function POST(request) {
+async function handlePOST(request) {
   try {
     const body = await request.json()
     
@@ -196,7 +196,7 @@ async function POST(request) {
 }
 
 // Apply rate limiting: 5 requests per 15 minutes per IP
-export const POST = withRateLimit(POST, {
+export const POST = withRateLimit(handlePOST, {
   maxRequests: 5,
   windowMs: 15 * 60 * 1000,
   message: 'Too many contact form submissions. Please wait before trying again.'

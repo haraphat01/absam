@@ -25,6 +25,10 @@ const toastIcons = {
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([])
 
+  const removeToast = React.useCallback((id) => {
+    setToasts((prev) => prev.filter((toast) => toast.id !== id))
+  }, [])
+
   const addToast = React.useCallback((toast) => {
     const id = Math.random().toString(36).substr(2, 9)
     const newToast = { id, ...toast, createdAt: Date.now() }
@@ -34,11 +38,7 @@ function ToastProvider({ children }) {
     setTimeout(() => {
       removeToast(id)
     }, toast.duration || 5000)
-  }, [])
-
-  const removeToast = React.useCallback((id) => {
-    setToasts((prev) => prev.filter((toast) => toast.id !== id))
-  }, [])
+  }, [removeToast])
 
   const value = React.useMemo(() => ({
     toasts,

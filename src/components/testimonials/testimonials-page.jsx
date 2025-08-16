@@ -159,7 +159,7 @@ function EmptyState() {
           No Testimonials Yet
         </h3>
         <p className="text-slate-600">
-          We're working on gathering customer testimonials. Check back soon to see what our customers have to say!
+          We&apos;re working on gathering customer testimonials. Check back soon to see what our customers have to say!
         </p>
       </div>
     </div>

@@ -130,7 +130,7 @@ export default function TestimonialsList({ testimonials, onDelete, onRefresh }) 
           {filteredTestimonials.length === 0 && searchTerm && (
             <div className="text-center py-8">
               <p className="text-slate-600">
-                No testimonials found matching "{searchTerm}"
+                No testimonials found matching &quot;{searchTerm}&quot;
               </p>
             </div>
           )}

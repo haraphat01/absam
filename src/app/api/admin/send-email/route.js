@@ -155,7 +155,7 @@ Best regards,
 The Absad MultiSynergy Team
 
 Email: info@absadmultisynergy.com
-Phone: +234 123 456 7890
+Phone: +2347018222950
           `,
           emailType: EMAIL_TYPES.GENERAL,
           contactInquiryId,

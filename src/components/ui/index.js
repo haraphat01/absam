@@ -40,7 +40,14 @@ export {
   SkeletonGrid,
   SkeletonMetrics,
   SkeletonForm,
-  SkeletonPage
+  SkeletonPage,
+  CardSkeleton, 
+  TableSkeleton, 
+  MetricsSkeleton, 
+  FormSkeleton, 
+  ProductGridSkeleton, 
+  TestimonialGridSkeleton, 
+  PageSkeleton 
 } from './skeleton'
 export { ToastProvider, useToast, useToastHook, Toast } from './toast'
 export { Progress, CircularProgress, GradientProgress } from './progress'
@@ -52,16 +59,6 @@ export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableC
 export { OptimizedImage, ProductImage, HeroImage } from './optimized-image'
 export { LazyComponent, FadeInSection, StaggeredList } from './lazy-component'
 export { PageTransition, SectionTransition, CardHover, ButtonHover, StaggerContainer } from './page-transition'
-export { 
-  Skeleton, 
-  CardSkeleton, 
-  TableSkeleton, 
-  MetricsSkeleton, 
-  FormSkeleton, 
-  ProductGridSkeleton, 
-  TestimonialGridSkeleton, 
-  PageSkeleton 
-} from './skeleton'
 
 // Icons
 export * from './icons'

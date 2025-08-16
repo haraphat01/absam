@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { LoadingSpinner, LoadingDots } from '@/components/ui/loading-spinner'
+import { LoadingSpinner, DotsSpinner } from '@/components/ui/loading-spinner'
 import { Skeleton, SkeletonText, SkeletonCard } from '@/components/ui/skeleton'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
@@ -14,7 +14,7 @@ export function PageLoading({ message = "Loading..." }) {
         <LoadingSpinner size="xl" className="mx-auto text-primary" />
         <div className="space-y-2">
           <p className="text-lg font-medium text-foreground">{message}</p>
-          <LoadingDots className="justify-center text-muted-foreground" />
+          <DotsSpinner className="justify-center text-muted-foreground" />
         </div>
       </div>
     </div>

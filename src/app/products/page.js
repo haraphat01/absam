@@ -512,7 +512,7 @@ export default function ProductsPage() {
                   <div className="pt-4 border-t border-slate-100">
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-muted-foreground">Available Sizes:</span>
-                      <span className="font-semibold">16", 18", 20" lengths</span>
+                      <span className="font-semibold">16&quot;, 18&quot;, 20&quot; lengths</span>
                     </div>
                   </div>
                 </div>
@@ -574,7 +574,7 @@ export default function ProductsPage() {
                   <div className="pt-4 border-t border-slate-100">
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-muted-foreground">Available Sizes:</span>
-                      <span className="font-semibold">12", 16" lengths</span>
+                      <span className="font-semibold">12&quot;, 16&quot; lengths</span>
                     </div>
                   </div>
                 </div>

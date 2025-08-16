@@ -39,7 +39,7 @@ export const API_ENDPOINTS = {
 // Company information
 export const COMPANY_INFO = {
   name: 'Absad MultiSynergy Limited',
-  address: 'Lagos, Nigeria',
+  address: ' Jebba, Kwara State, Nigeria',
   phone: '+234-XXX-XXX-XXXX',
   email: 'info@absadmultisynergy.com',
   website: 'www.absadmultisynergy.com',

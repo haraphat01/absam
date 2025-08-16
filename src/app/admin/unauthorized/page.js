@@ -35,15 +35,15 @@ export default function UnauthorizedPage() {
               Access Denied
             </CardTitle>
             <CardDescription>
-              You don't have permission to access this resource
+              You don&apos;t have permission to access this resource
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-center text-sm text-gray-600">
               {userProfile ? (
                 <p>
-                  Your account ({userProfile.email}) with role "{userProfile.role}" 
-                  doesn't have the required permissions for this page.
+                  Your account ({userProfile.email}) with role &quot;{userProfile.role}&quot; 
+                  doesn&apos;t have the required permissions for this page.
                 </p>
               ) : (
                 <p>

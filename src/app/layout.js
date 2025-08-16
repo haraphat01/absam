@@ -4,6 +4,7 @@ import { QueryProvider } from "@/providers/query-provider";
 import { AuthProvider } from "@/providers/auth-provider";
 import { Toaster } from "sonner";
 import { PerformanceProvider } from "@/providers/performance-provider";
+import { ToastProvider } from "@/components/ui/toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,8 +87,10 @@ export default function RootLayout({ children }) {
         <PerformanceProvider>
           <QueryProvider>
             <AuthProvider>
-              {children}
-              <Toaster position="top-right" richColors />
+              <ToastProvider>
+                {children}
+                <Toaster position="top-right" richColors />
+              </ToastProvider>
             </AuthProvider>
           </QueryProvider>
         </PerformanceProvider>

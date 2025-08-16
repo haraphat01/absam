@@ -20,7 +20,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Phone',
-    details: ['+234 123 456 7890', '+234 987 654 3210'],
+    details: ['+2347018222950', '+234 8071340418'],
     description: 'Call us during business hours'
   },
   {
@@ -175,7 +175,7 @@ export function ContactPage() {
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              Ready to start your import/export journey? We're here to help you every step of the way. 
+              Ready to start your import/export journey? We&apos;re here to help you every step of the way. 
               Contact our expert team today.
             </p>
           </motion.div>
@@ -198,7 +198,7 @@ export function ContactPage() {
                   Send us a Message
                 </h2>
                 <p className="text-muted-foreground text-lg">
-                  Fill out the form below and we'll get back to you within 24 hours.
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </p>
               </div>
               <ContactForm />
@@ -248,7 +248,7 @@ export function ContactPage() {
               Why Choose Us?
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We're committed to providing exceptional service and building lasting relationships with our clients.
+              We&apos;re committed to providing exceptional service and building lasting relationships with our clients.
             </p>
           </motion.div>
 

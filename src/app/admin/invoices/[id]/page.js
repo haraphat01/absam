@@ -164,7 +164,7 @@ export default function ViewInvoicePage({ params }) {
                 Invoice Not Found
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                The invoice you're looking for doesn't exist or has been deleted.
+                The invoice you&apos;re looking for doesn&apos;t exist or has been deleted.
               </p>
               <Link href="/admin/invoices">
                 <Button>Back to Invoices</Button>
