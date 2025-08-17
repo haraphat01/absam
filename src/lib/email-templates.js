@@ -603,6 +603,116 @@ export const generateInvoiceEmailTemplate = (invoice, companySettings) => {
             padding-top: 10px;
             margin-top: 10px;
           }
+          .invoice-items {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          }
+          .items-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0 0 20px 0;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          .items-title::before {
+            content: "📋";
+            font-size: 18px;
+          }
+          .items-table {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          }
+          .items-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 15px;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          .item-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 15px;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f3f4f6;
+            align-items: center;
+            transition: background-color 0.2s ease;
+          }
+          .item-row:nth-child(even) {
+            background-color: #f9fafb;
+          }
+          .item-row:last-child {
+            border-bottom: none;
+          }
+          .item-row:hover {
+            background-color: #f3f4f6;
+          }
+          .item-description {
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.4;
+          }
+          .item-quantity {
+            text-align: center;
+            font-weight: 500;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+          }
+          .item-price {
+            text-align: center;
+            font-weight: 500;
+            color: #059669;
+            font-size: 14px;
+          }
+          .item-total {
+            text-align: right;
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 15px;
+          }
+          .items-summary {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-top: 2px solid #e5e7eb;
+            padding: 20px;
+            margin-top: 0;
+          }
+          .items-subtotal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 18px;
+            padding: 8px 0;
+          }
+          .subtotal-label {
+            color: #6b7280;
+            font-weight: 600;
+          }
+          .subtotal-amount {
+            color: #059669;
+            font-weight: 700;
+            font-size: 20px;
+          }
           .banking-section {
             background-color: #fef3c7;
             border: 1px solid #f59e0b;
@@ -673,6 +783,55 @@ export const generateInvoiceEmailTemplate = (invoice, companySettings) => {
             .detail-label {
               margin-bottom: 5px;
             }
+            .items-table {
+              border-radius: 0;
+            }
+            .items-header {
+              display: none;
+            }
+            .item-row {
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+              padding: 15px;
+              border-bottom: 2px solid #e5e7eb;
+            }
+            .item-row:last-child {
+              border-bottom: none;
+            }
+            .item-description {
+              font-weight: 700;
+              color: #1f2937;
+              font-size: 16px;
+              border-bottom: 1px solid #e5e7eb;
+              padding-bottom: 8px;
+            }
+            .item-quantity {
+              display: inline-block;
+              background: #2563eb;
+              color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              font-weight: 600;
+              text-align: center;
+              width: fit-content;
+            }
+            .item-price {
+              color: #059669;
+              font-weight: 600;
+              font-size: 14px;
+            }
+            .item-total {
+              font-weight: 700;
+              color: #1f2937;
+              font-size: 16px;
+              border-top: 1px solid #e5e7eb;
+              padding-top: 8px;
+            }
+            .items-summary {
+              margin-top: 15px;
+            }
           }
         </style>
       </head>
@@ -707,6 +866,34 @@ export const generateInvoiceEmailTemplate = (invoice, companySettings) => {
               <span class="detail-label">Total Amount:</span>
               <span class="detail-value">${formatCurrency(invoice.total_amount)}</span>
             </div>
+          </div>
+
+          <div class="invoice-items">
+            <h3 class="items-title">Invoice Items</h3>
+            ${invoice.items && invoice.items.length > 0 ? `
+              <div class="items-table">
+                <div class="items-header">
+                  <div>Description</div>
+                  <div>Quantity</div>
+                  <div>Unit Price</div>
+                  <div>Total</div>
+                </div>
+                ${invoice.items.map(item => `
+                  <div class="item-row">
+                    <div class="item-description">${item.description}</div>
+                    <div class="item-quantity">${item.quantity}</div>
+                    <div class="item-price">${formatCurrency(item.price)}</div>
+                    <div class="item-total">${formatCurrency(item.total || item.quantity * item.price)}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="items-summary">
+                <div class="items-subtotal">
+                  <span class="subtotal-label">Subtotal:</span>
+                  <span class="subtotal-amount">${formatCurrency(invoice.total_amount)}</span>
+                </div>
+              </div>
+            ` : '<p style="color: #6b7280; font-style: italic; text-align: center; padding: 20px;">No items specified</p>'}
           </div>
 
           ${companySettings ? `
@@ -774,6 +961,11 @@ Invoice Details:
 - Due Date: ${formatDate(dueDate)}
 - Status: ${invoice.status}
 - Total Amount: ${formatCurrency(invoice.total_amount)}
+
+Invoice Items:
+${invoice.items && invoice.items.length > 0 ? invoice.items.map(item => `- ${item.description}: ${item.quantity} × ${formatCurrency(item.price)} = ${formatCurrency(item.total || item.quantity * item.price)}`).join('\n') : '- No items specified'}
+
+Subtotal: ${formatCurrency(invoice.total_amount)}
 
 ${companySettings ? `
 Payment Information:
@@ -913,6 +1105,116 @@ export const generatePaymentReminderTemplate = (invoice, companySettings) => {
             padding-top: 10px;
             margin-top: 10px;
           }
+          .invoice-items {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          }
+          .items-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0 0 20px 0;
+            border-bottom: 3px solid ${isOverdue ? '#dc2626' : '#2563eb'};
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          .items-title::before {
+            content: "📋";
+            font-size: 18px;
+          }
+          .items-table {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          }
+          .items-header {
+            background: linear-gradient(135deg, ${isOverdue ? '#dc2626' : '#2563eb'} 0%, ${isOverdue ? '#b91c1c' : '#1d4ed8'} 100%);
+            color: white;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 15px;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          .item-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 15px;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f3f4f6;
+            align-items: center;
+            transition: background-color 0.2s ease;
+          }
+          .item-row:nth-child(even) {
+            background-color: #f9fafb;
+          }
+          .item-row:last-child {
+            border-bottom: none;
+          }
+          .item-row:hover {
+            background-color: #f3f4f6;
+          }
+          .item-description {
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.4;
+          }
+          .item-quantity {
+            text-align: center;
+            font-weight: 500;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+          }
+          .item-price {
+            text-align: center;
+            font-weight: 500;
+            color: #059669;
+            font-size: 14px;
+          }
+          .item-total {
+            text-align: right;
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 15px;
+          }
+          .items-summary {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-top: 2px solid #e5e7eb;
+            padding: 20px;
+            margin-top: 0;
+          }
+          .items-subtotal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 18px;
+            padding: 8px 0;
+          }
+          .subtotal-label {
+            color: #6b7280;
+            font-weight: 600;
+          }
+          .subtotal-amount {
+            color: ${isOverdue ? '#dc2626' : '#059669'};
+            font-weight: 700;
+            font-size: 20px;
+          }
           .banking-section {
             background-color: #fef3c7;
             border: 1px solid #f59e0b;
@@ -962,6 +1264,55 @@ export const generatePaymentReminderTemplate = (invoice, companySettings) => {
             .detail-label {
               margin-bottom: 5px;
             }
+            .items-table {
+              border-radius: 0;
+            }
+            .items-header {
+              display: none;
+            }
+            .item-row {
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+              padding: 15px;
+              border-bottom: 2px solid #e5e7eb;
+            }
+            .item-row:last-child {
+              border-bottom: none;
+            }
+            .item-description {
+              font-weight: 700;
+              color: #1f2937;
+              font-size: 16px;
+              border-bottom: 1px solid #e5e7eb;
+              padding-bottom: 8px;
+            }
+            .item-quantity {
+              display: inline-block;
+              background: ${isOverdue ? '#dc2626' : '#2563eb'};
+              color: white;
+              padding: 4px 12px;
+              border-radius: 20px;
+              font-size: 12px;
+              font-weight: 600;
+              text-align: center;
+              width: fit-content;
+            }
+            .item-price {
+              color: #059669;
+              font-weight: 600;
+              font-size: 14px;
+            }
+            .item-total {
+              font-weight: 700;
+              color: #1f2937;
+              font-size: 16px;
+              border-top: 1px solid #e5e7eb;
+              padding-top: 8px;
+            }
+            .items-summary {
+              margin-top: 15px;
+            }
           }
         </style>
       </head>
@@ -1007,6 +1358,34 @@ export const generatePaymentReminderTemplate = (invoice, companySettings) => {
               <span class="detail-label">Amount Due:</span>
               <span class="detail-value">${formatCurrency(invoice.total_amount)}</span>
             </div>
+          </div>
+
+          <div class="invoice-items">
+            <h3 class="items-title">Invoice Items</h3>
+            ${invoice.items && invoice.items.length > 0 ? `
+              <div class="items-table">
+                <div class="items-header">
+                  <div>Description</div>
+                  <div>Quantity</div>
+                  <div>Unit Price</div>
+                  <div>Total</div>
+                </div>
+                ${invoice.items.map(item => `
+                  <div class="item-row">
+                    <div class="item-description">${item.description}</div>
+                    <div class="item-quantity">${item.quantity}</div>
+                    <div class="item-price">${formatCurrency(item.price)}</div>
+                    <div class="item-total">${formatCurrency(item.total || item.quantity * item.price)}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="items-summary">
+                <div class="items-subtotal">
+                  <span class="subtotal-label">Subtotal:</span>
+                  <span class="subtotal-amount">${formatCurrency(invoice.total_amount)}</span>
+                </div>
+              </div>
+            ` : '<p style="color: #6b7280; font-style: italic; text-align: center; padding: 20px;">No items specified</p>'}
           </div>
 
           ${companySettings ? `
@@ -1073,6 +1452,11 @@ Invoice Details:
 - Invoice Date: ${formatDate(invoice.created_at)}
 - Due Date: ${formatDate(dueDate)}
 - Amount Due: ${formatCurrency(invoice.total_amount)}
+
+Invoice Items:
+${invoice.items && invoice.items.length > 0 ? invoice.items.map(item => `- ${item.description}: ${item.quantity} × ${formatCurrency(item.price)} = ${formatCurrency(item.total || item.quantity * item.price)}`).join('\n') : '- No items specified'}
+
+Subtotal: ${formatCurrency(invoice.total_amount)}
 
 ${companySettings ? `
 Payment Information:

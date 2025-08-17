@@ -203,6 +203,7 @@ export function SendInvoiceModal({
               <h5 className="font-medium text-blue-900 mb-2">Email will include:</h5>
               <ul className="text-sm text-blue-800 space-y-1">
                 <li>• Professional invoice email template</li>
+                <li>• Complete invoice items breakdown</li>
                 <li>• PDF invoice attachment</li>
                 <li>• Complete banking details for payment</li>
                 <li>• Payment instructions and due date</li>
