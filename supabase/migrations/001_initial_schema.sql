@@ -44,7 +44,7 @@ CREATE TABLE public.company_settings (
     account_name VARCHAR(255) NOT NULL,
     account_number VARCHAR(50) NOT NULL,
     swift_code VARCHAR(20),
-    currency VARCHAR(10) DEFAULT 'NGN',
+    currency VARCHAR(10) DEFAULT 'USD',
     updated_by UUID REFERENCES public.users(id),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

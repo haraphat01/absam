@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
-import { getInvoiceById, getCompanySettings, updateInvoicePdfUrl } from '@/lib/database'
-import { generateInvoicePDF } from '@/lib/pdf-generator'
+import { getInvoiceByIdServer, getCompanySettingsServer, updateInvoicePdfUrlServer } from '@/lib/database-server'
+import { generateBasicPDF } from '@/lib/pdf-generator-basic'
 import { emailService } from '@/lib/email-service'
 
 export async function POST(request, { params }) {
   try {
-    const { id } = params
+    const { id } = await params
     const body = await request.json()
     const { type = 'invoice', message } = body
 
@@ -17,7 +17,7 @@ export async function POST(request, { params }) {
     }
 
     // Fetch invoice data
-    const invoice = await getInvoiceById(id)
+    const invoice = await getInvoiceByIdServer(id)
     if (!invoice) {
       return NextResponse.json(
         { success: false, error: 'Invoice not found' },
@@ -26,27 +26,30 @@ export async function POST(request, { params }) {
     }
 
     // Fetch company settings for banking details
-    const companySettings = await getCompanySettings()
+    const companySettings = await getCompanySettingsServer()
 
     // Generate PDF
-    const pdfBuffer = await generateInvoicePDF(invoice, companySettings)
+    const pdfBuffer = await generateBasicPDF(invoice)
 
-    // Store PDF URL if needed
-    let pdfUrl = null
-    try {
-      pdfUrl = await updateInvoicePdfUrl(invoice.id, pdfBuffer)
-    } catch (pdfError) {
-      console.error('Failed to store PDF:', pdfError)
-      // Continue without storing PDF URL
-    }
+    // Note: We don't store the PDF buffer directly as it causes circular structure issues
+    // The PDF is generated on-demand and sent as an attachment
 
     // Send invoice email using enhanced email service
+    console.log('Sending invoice email:', {
+      invoiceId: invoice.id,
+      invoiceNumber: invoice.invoice_number,
+      clientEmail: invoice.client_email,
+      fromEmail: process.env.NEXT_PUBLIC_FROM_EMAIL
+    })
+    
     const emailResult = await emailService.sendInvoiceEmail(
       invoice, 
       companySettings, 
       pdfBuffer,
       null // sentBy - could be extracted from auth context
     )
+    
+    console.log('Invoice email result:', emailResult)
 
     if (!emailResult.success) {
       return NextResponse.json(
@@ -66,7 +69,6 @@ export async function POST(request, { params }) {
         emailLogId: emailResult.emailLogId,
         message: 'Invoice email sent successfully',
         sentTo: invoice.client_email,
-        pdfUrl: pdfUrl,
         invoiceNumber: invoice.invoice_number
       }
     })
@@ -86,7 +88,7 @@ export async function POST(request, { params }) {
 // GET endpoint to check email sending status or resend
 export async function GET(request, { params }) {
   try {
-    const { id } = params
+    const { id } = await params
     const { searchParams } = new URL(request.url)
     const action = searchParams.get('action')
 
@@ -98,7 +100,7 @@ export async function GET(request, { params }) {
     }
 
     // Fetch invoice data
-    const invoice = await getInvoiceById(id)
+    const invoice = await getInvoiceByIdServer(id)
     if (!invoice) {
       return NextResponse.json(
         { success: false, error: 'Invoice not found' },
@@ -108,7 +110,7 @@ export async function GET(request, { params }) {
 
     if (action === 'preview') {
       // Return email preview without sending
-      const companySettings = await getCompanySettings()
+      const companySettings = await getCompanySettingsServer()
       const { generateInvoiceEmailTemplate } = await import('@/lib/email-templates')
       const emailTemplate = generateInvoiceEmailTemplate(invoice, companySettings)
       

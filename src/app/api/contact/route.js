@@ -95,7 +95,7 @@ async function handlePOST(request) {
     try {
       // Send notification to company
       await emailService.sendEmail({
-        to: 'info@absadmultisynergy.com',
+        to: 'contact@absadmultisynergy.com',
         subject: `New Contact Inquiry from ${name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -150,9 +150,9 @@ async function handlePOST(request) {
             
             <div style="margin: 20px 0;">
               <h3 style="color: #374151;">Contact Information</h3>
-              <p><strong>Phone:</strong> +234 123 456 7890</p>
-              <p><strong>Email:</strong> info@absadmultisynergy.com</p>
-              <p><strong>Address:</strong> Lagos, Nigeria</p>
+              <p><strong>Phone:</strong> +2347018222950</p>
+              <p><strong>Email:</strong> contact@absadmultisynergy.com</p>
+              <p><strong>Address:</strong> Jebba, Kwara State, Nigeria</p>
             </div>
             
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px;">

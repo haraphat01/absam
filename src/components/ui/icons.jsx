@@ -58,6 +58,8 @@ export {
   MoreVertical,
   UserCheck,
   UserX,
+  UserPlus,
+  LogIn,
   
   // Status & Feedback
   Check,
@@ -89,6 +91,7 @@ export {
   RefreshCw as Refresh,
   RefreshCw,
   RotateCcw,
+  Loader2,
   Power,
   LogOut,
   Bug,

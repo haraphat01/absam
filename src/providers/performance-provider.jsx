@@ -1,31 +1,47 @@
 'use client'
 
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { initializePerformance, optimizeImages, setupViewportOptimizations } from '@/lib/performance-init'
 
 const PerformanceContext = createContext({})
 
 export function PerformanceProvider({ children }) {
+  const [isHydrated, setIsHydrated] = useState(false)
+
+  // Wait for hydration to complete before running performance optimizations
   useEffect(() => {
-    // Initialize performance optimizations on mount
-    initializePerformance()
-    
-    // Optimize images after initial render
-    const optimizeImagesTimer = setTimeout(() => {
-      optimizeImages()
+    setIsHydrated(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isHydrated) return
+
+    // Delay initialization to ensure React has fully hydrated
+    const initTimer = setTimeout(() => {
+      initializePerformance()
+      
+      // Optimize images after initial render
+      const optimizeImagesTimer = setTimeout(() => {
+        optimizeImages()
+      }, 200)
+
+      // Setup viewport optimizations
+      setupViewportOptimizations()
+
+      return () => {
+        clearTimeout(optimizeImagesTimer)
+      }
     }, 100)
 
-    // Setup viewport optimizations
-    setupViewportOptimizations()
-
-    // Cleanup
     return () => {
-      clearTimeout(optimizeImagesTimer)
+      clearTimeout(initTimer)
     }
-  }, [])
+  }, [isHydrated])
 
   // Handle route changes for performance optimization
   useEffect(() => {
+    if (!isHydrated) return
+
     const handleRouteChange = () => {
       // Re-optimize images on route change
       setTimeout(() => {
@@ -39,7 +55,7 @@ export function PerformanceProvider({ children }) {
     return () => {
       window.removeEventListener('popstate', handleRouteChange)
     }
-  }, [])
+  }, [isHydrated])
 
   return (
     <PerformanceContext.Provider value={{}}>

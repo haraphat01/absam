@@ -1,11 +1,11 @@
 'use client'
 
-import { useAuth } from '@/providers/auth-provider'
+import { useSupabaseAuth } from '@/hooks/use-supabase-auth'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
 export function ProtectedRoute({ children, requiredRole = null, fallbackPath = '/admin/login' }) {
-  const { user, userProfile, loading, isAuthenticated, hasRole } = useAuth()
+  const { user, userProfile, loading, isAuthenticated, hasRole } = useSupabaseAuth()
   const router = useRouter()
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export function withAuth(Component, requiredRole = null) {
 
 // Hook for checking permissions in components
 export function usePermissions() {
-  const { userProfile, isAdmin, isStaff, hasRole, isAuthenticated } = useAuth()
+  const { userProfile, isAdmin, isStaff, hasRole, isAuthenticated } = useSupabaseAuth()
 
   return {
     userProfile,

@@ -1,6 +1,6 @@
 'use client'
 
-import { useAuth } from '@/providers/auth-provider'
+import { useSupabaseAuth } from '@/hooks/use-supabase-auth'
 import { usePermissions } from '@/components/auth/protected-route'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -9,10 +9,16 @@ import { User, Shield, Settings, BarChart3, TrendingUp, Users, FileText, DollarS
 import { MetricsCard } from '@/components/admin/dashboard/metrics-card'
 import { SimpleBarChart, SimpleDonutChart } from '@/components/admin/dashboard/simple-chart'
 import { useDashboardMetrics } from '@/hooks/use-dashboard-metrics'
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 
 export default function AdminDashboard() {
-  const { userProfile } = useAuth()
+  const [isClient, setIsClient] = useState(false)
+
+  // Prevent hydration mismatch by ensuring client-side rendering
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  const { userProfile } = useSupabaseAuth()
   const { isAdmin, isStaff, canManageUsers, canManageSettings } = usePermissions()
   const { data: metrics, isLoading, error, isRefetching } = useDashboardMetrics()
 
@@ -55,6 +61,23 @@ export default function AdminDashboard() {
       }
     ]
   }, [metrics])
+
+  // Show loading state during hydration
+  if (!isClient) {
+    return (
+      <div className="space-y-8 animate-pulse">
+        <div className="space-y-2">
+          <div className="h-8 bg-gray-200 rounded w-48"></div>
+          <div className="h-4 bg-gray-200 rounded w-96"></div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="h-32 bg-gray-200 rounded"></div>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-8 animate-fade-in">

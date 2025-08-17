@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 import { InvoiceForm } from '@/components/admin/invoices'
 import { Card, CardContent } from '@/components/ui/card'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import { getInvoiceById, updateInvoice, getCompanySettings } from '@/lib/database'
+import { getInvoiceById, updateInvoice } from '@/lib/database'
 
 export default function EditInvoicePage({ params }) {
   const router = useRouter()
@@ -24,7 +24,17 @@ export default function EditInvoicePage({ params }) {
   // Fetch company settings
   const { data: companySettings, isLoading: settingsLoading } = useQuery({
     queryKey: ['company-settings'],
-    queryFn: getCompanySettings,
+    queryFn: async () => {
+      const response = await fetch('/api/settings/company')
+      if (!response.ok) {
+        throw new Error('Failed to fetch company settings')
+      }
+      const result = await response.json()
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to fetch company settings')
+      }
+      return result.data
+    },
   })
 
   // Update invoice mutation

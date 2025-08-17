@@ -26,13 +26,13 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    details: ['contact@absadmultisynergy.com', 'sales@absadmultisynergy.com'],
+    details: ['contact@absadmultisynergy.com'],
     description: 'Send us an email anytime'
   },
   {
     icon: MapPin,
     title: 'Address',
-    details: ['Lagos, Nigeria'],
+    details: ['Jebba, Kwara State, Nigeria'],
     description: 'Visit our main office'
   },
   {

@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { QueryProvider } from "@/providers/query-provider";
-import { AuthProvider } from "@/providers/auth-provider";
 import { Toaster } from "sonner";
 import { PerformanceProvider } from "@/providers/performance-provider";
 import { ToastProvider } from "@/components/ui/toast";
@@ -69,8 +68,7 @@ export default function RootLayout({ children }) {
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#1e40af" />
         
-        {/* Preload critical resources */}
-        <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Preload critical resources - removed missing font */}
         
         {/* PWA manifest */}
         <link rel="manifest" href="/manifest.json" />
@@ -79,19 +77,18 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/icon-192.png" />
         
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning={true}
       >
         <PerformanceProvider>
           <QueryProvider>
-            <AuthProvider>
-              <ToastProvider>
-                {children}
-                <Toaster position="top-right" richColors />
-              </ToastProvider>
-            </AuthProvider>
+            <ToastProvider>
+              {children}
+              <Toaster position="top-right" richColors />
+            </ToastProvider>
           </QueryProvider>
         </PerformanceProvider>
       </body>

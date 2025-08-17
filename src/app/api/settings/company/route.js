@@ -1,35 +1,28 @@
 import { NextResponse } from 'next/server'
-import { getCompanySettings, updateCompanySettings } from '@/lib/database'
 import { companySettingsSchema } from '@/lib/validations'
 import { createServerClient } from '@/lib/supabase'
 import { sanitize } from '@/lib/security'
 
-export async function GET() {
+export async function GET(request) {
   try {
+    console.log('GET /api/settings/company - Starting request')
+    
     const supabase = createServerClient()
     
-    // Check if user is authenticated and has admin role
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
-    // Get user profile to check role
-    const { data: userProfile, error: profileError } = await supabase
-      .from('users')
-      .select('role')
-      .eq('id', user.id)
+    const { data, error } = await supabase
+      .from('company_settings')
+      .select('*')
+      .order('updated_at', { ascending: false })
+      .limit(1)
       .single()
-
-    if (profileError || !userProfile || userProfile.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    
+    if (error && error.code !== 'PGRST116') {
+      throw error
     }
-
-    const settings = await getCompanySettings()
     
     return NextResponse.json({
       success: true,
-      data: settings
+      data: data
     })
   } catch (error) {
     console.error('Error fetching company settings:', error)
@@ -41,58 +34,56 @@ export async function GET() {
 }
 
 export async function PUT(request) {
+  console.log('PUT /api/settings/company - Starting request')
+  
   try {
-    const supabase = createServerClient()
-    
-    // Check if user is authenticated and has admin role
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
-    // Get user profile to check role
-    const { data: userProfile, error: profileError } = await supabase
-      .from('users')
-      .select('role')
-      .eq('id', user.id)
-      .single()
-
-    if (profileError || !userProfile || userProfile.role !== 'ADMIN') {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-    }
-
     const body = await request.json()
     
-    // Sanitize input
-    const sanitizedBody = sanitize.object(body)
+    // Validate the request body
+    const validatedData = companySettingsSchema.parse(body)
     
-    // Validate the request data
-    const validationResult = companySettingsSchema.safeParse(sanitizedBody)
-    if (!validationResult.success) {
-      return NextResponse.json({
-        success: false,
-        error: 'Validation failed',
-        details: validationResult.error.flatten().fieldErrors
-      }, { status: 400 })
+    // Sanitize the data
+    const sanitizedData = {
+      bank_name: sanitize.text(validatedData.bankName),
+      account_name: sanitize.text(validatedData.accountName),
+      account_number: validatedData.accountNumber,
+      swift_code: validatedData.swiftCode ? sanitize.text(validatedData.swiftCode) : null,
+      currency: validatedData.currency,
+      updated_at: new Date().toISOString()
     }
-
-    const settingsData = {
-      ...validationResult.data,
-      bank_name: validationResult.data.bankName,
-      account_name: validationResult.data.accountName,
-      account_number: validationResult.data.accountNumber,
-      swift_code: validationResult.data.swiftCode,
-      currency: validationResult.data.currency,
-      updated_by: user.id
+    
+    // Update the company settings using server client
+    const supabase = createServerClient()
+    
+    // First try to update existing settings
+    const { data: existingSettings } = await supabase
+      .from('company_settings')
+      .select('id')
+      .limit(1)
+      .single()
+    
+    let updatedSettings
+    if (existingSettings) {
+      const { data, error } = await supabase
+        .from('company_settings')
+        .update(sanitizedData)
+        .eq('id', existingSettings.id)
+        .select()
+        .single()
+      
+      if (error) throw error
+      updatedSettings = data
+    } else {
+      // Create new settings if none exist
+      const { data, error } = await supabase
+        .from('company_settings')
+        .insert(sanitizedData)
+        .select()
+        .single()
+      
+      if (error) throw error
+      updatedSettings = data
     }
-
-    // Remove the camelCase keys to avoid conflicts
-    delete settingsData.bankName
-    delete settingsData.accountName
-    delete settingsData.accountNumber
-    delete settingsData.swiftCode
-
-    const updatedSettings = await updateCompanySettings(settingsData)
     
     return NextResponse.json({
       success: true,
@@ -101,9 +92,19 @@ export async function PUT(request) {
     })
   } catch (error) {
     console.error('Error updating company settings:', error)
+    
+    if (error.name === 'ZodError') {
+      return NextResponse.json({
+        success: false,
+        error: 'Validation failed',
+        details: error.errors
+      }, { status: 400 })
+    }
+    
     return NextResponse.json({
       success: false,
-      error: 'Failed to update company settings'
+      error: 'Failed to update company settings',
+      details: error.message
     }, { status: 500 })
   }
 }

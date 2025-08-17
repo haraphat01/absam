@@ -23,5 +23,11 @@ export const createServerClient = () => {
   })
 }
 
-// Export createClient for compatibility
-export const createClient = createSupabaseClient
+// Export createClient for client-side usage
+export const createClient = () => createSupabaseClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    autoRefreshToken: true,
+    persistSession: true,
+    detectSessionInUrl: true
+  }
+})

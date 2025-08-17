@@ -56,9 +56,9 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-8">
                 <Button asChild size="xl" variant="glow" className="px-10 py-6 text-xl font-bold hover-lift-glow">
-                  <Link href="/contact">
+                  <Link href="/admin/login">
                     <Ship className="mr-3 h-7 w-7" />
-                    Get Free Quote
+                    Login
                   </Link>
                 </Button>
                 <Button asChild variant="glass" size="xl" className="px-10 py-6 text-xl font-bold hover-lift-glow">

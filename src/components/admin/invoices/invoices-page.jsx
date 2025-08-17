@@ -4,7 +4,6 @@ import * as React from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { InvoiceList } from './invoice-list'
-import { getInvoices, updateInvoiceStatus, deleteInvoice } from '@/lib/database'
 
 export function InvoicesPage() {
   const queryClient = useQueryClient()
@@ -17,13 +16,35 @@ export function InvoicesPage() {
     refetch 
   } = useQuery({
     queryKey: ['invoices'],
-    queryFn: () => getInvoices(),
+    queryFn: async () => {
+      const response = await fetch('/api/invoices')
+      if (!response.ok) {
+        throw new Error('Failed to fetch invoices')
+      }
+      const result = await response.json()
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to fetch invoices')
+      }
+      return result.data
+    },
     staleTime: 5 * 60 * 1000, // 5 minutes
   })
 
   // Update invoice status mutation
   const updateStatusMutation = useMutation({
-    mutationFn: ({ invoiceId, status }) => updateInvoiceStatus(invoiceId, status),
+    mutationFn: async ({ invoiceId, status }) => {
+      const response = await fetch(`/api/invoices/${invoiceId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status }),
+      })
+      if (!response.ok) {
+        throw new Error('Failed to update invoice status')
+      }
+      return response.json()
+    },
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] })
       queryClient.invalidateQueries({ queryKey: ['dashboard-metrics'] })
@@ -37,7 +58,15 @@ export function InvoicesPage() {
 
   // Delete invoice mutation
   const deleteMutation = useMutation({
-    mutationFn: (invoiceId) => deleteInvoice(invoiceId),
+    mutationFn: async (invoiceId) => {
+      const response = await fetch(`/api/invoices/${invoiceId}`, {
+        method: 'DELETE',
+      })
+      if (!response.ok) {
+        throw new Error('Failed to delete invoice')
+      }
+      return response.json()
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] })
       queryClient.invalidateQueries({ queryKey: ['dashboard-metrics'] })

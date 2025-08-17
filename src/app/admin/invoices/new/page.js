@@ -7,18 +7,28 @@ import { toast } from 'sonner'
 import { InvoiceForm } from '@/components/admin/invoices'
 import { Card, CardContent } from '@/components/ui/card'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import { createInvoice, generateInvoiceNumber, getCompanySettings } from '@/lib/database'
-import { useAuth } from '@/providers/auth-provider'
+import { createInvoice, generateInvoiceNumber } from '@/lib/database'
+import { useSupabaseAuth } from '@/hooks/use-supabase-auth'
 
 export default function NewInvoicePage() {
   const router = useRouter()
   const queryClient = useQueryClient()
-  const { userProfile } = useAuth()
+  const { userProfile } = useSupabaseAuth()
 
   // Fetch company settings
   const { data: companySettings, isLoading: settingsLoading } = useQuery({
     queryKey: ['company-settings'],
-    queryFn: getCompanySettings,
+    queryFn: async () => {
+      const response = await fetch('/api/settings/company')
+      if (!response.ok) {
+        throw new Error('Failed to fetch company settings')
+      }
+      const result = await response.json()
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to fetch company settings')
+      }
+      return result.data
+    },
   })
 
   // Create invoice mutation
@@ -43,7 +53,7 @@ export default function NewInvoicePage() {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['invoices'] })
       queryClient.invalidateQueries({ queryKey: ['dashboard-metrics'] })
-      toast.success('Invoice created successfully')
+      toast.success('Invoice created successfully and sent to client')
       router.push(`/admin/invoices/${data.id}`)
     },
     onError: (error) => {

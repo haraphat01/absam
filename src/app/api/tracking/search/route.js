@@ -7,7 +7,7 @@ const mockTrackingData = {
     status: 'In Transit',
     currentLocation: 'Mediterranean Sea',
     vessel: 'MSC OSCAR',
-    origin: 'Lagos, Nigeria',
+    origin: 'Jebba, Kwara State, Nigeria',
     destination: 'Hamburg, Germany',
     estimatedArrival: '2025-02-20T10:00:00Z',
     lastUpdated: '2025-01-15T14:30:00Z',

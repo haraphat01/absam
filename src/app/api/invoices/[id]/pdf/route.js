@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
-import { getInvoiceById, getCompanySettings, updateInvoicePdfUrl, uploadFile } from '@/lib/database'
-import { generateInvoicePDF } from '@/lib/pdf-generator'
+import { getInvoiceByIdServer, getCompanySettingsServer, updateInvoicePdfUrlServer, uploadFile } from '@/lib/database-server'
+import { generateBasicPDF } from '@/lib/pdf-generator-basic'
 
 export async function GET(request, { params }) {
   try {
-    const { id } = params
+    const { id } = await params
 
     if (!id) {
       return NextResponse.json(
@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     }
 
     // Fetch invoice data
-    const invoice = await getInvoiceById(id)
+    const invoice = await getInvoiceByIdServer(id)
     if (!invoice) {
       return NextResponse.json(
         { success: false, error: 'Invoice not found' },
@@ -23,10 +23,10 @@ export async function GET(request, { params }) {
     }
 
     // Fetch company settings for banking details
-    const companySettings = await getCompanySettings()
+    const companySettings = await getCompanySettingsServer()
 
     // Generate PDF
-    const pdfBuffer = await generateInvoicePDF(invoice, companySettings)
+    const pdfBuffer = await generateBasicPDF(invoice)
 
     // Create filename
     const filename = `invoice-${invoice.invoice_number}.pdf`
@@ -38,6 +38,7 @@ export async function GET(request, { params }) {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `inline; filename="${filename}"`,
         'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Content-Length': Buffer.byteLength(pdfBuffer).toString(),
       },
     })
   } catch (error) {
@@ -55,7 +56,7 @@ export async function GET(request, { params }) {
 
 export async function POST(request, { params }) {
   try {
-    const { id } = params
+    const { id } = await params
 
     if (!id) {
       return NextResponse.json(
@@ -65,7 +66,7 @@ export async function POST(request, { params }) {
     }
 
     // Fetch invoice data
-    const invoice = await getInvoiceById(id)
+    const invoice = await getInvoiceByIdServer(id)
     if (!invoice) {
       return NextResponse.json(
         { success: false, error: 'Invoice not found' },
@@ -74,10 +75,10 @@ export async function POST(request, { params }) {
     }
 
     // Fetch company settings for banking details
-    const companySettings = await getCompanySettings()
+    const companySettings = await getCompanySettingsServer()
 
     // Generate PDF
-    const pdfBuffer = await generateInvoicePDF(invoice, companySettings)
+    const pdfBuffer = await generateBasicPDF(invoice)
 
     // Create filename and path for storage
     const filename = `invoice-${invoice.invoice_number}-${Date.now()}.pdf`
@@ -96,7 +97,7 @@ export async function POST(request, { params }) {
     const pdfUrl = urlData.publicUrl
 
     // Update invoice with PDF URL
-    await updateInvoicePdfUrl(id, pdfUrl)
+    await updateInvoicePdfUrlServer(id, pdfUrl)
 
     return NextResponse.json({
       success: true,

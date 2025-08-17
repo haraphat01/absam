@@ -86,13 +86,13 @@ export function Header() {
             <div className="hidden xl:flex items-center space-x-3 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2 bg-primary/5 rounded-full px-3 py-1.5 hover:bg-primary/10 transition-colors duration-300">
                 <Phone className="h-3.5 w-3.5 text-primary" />
-                <span className="font-medium text-xs">+234 123 456 7890</span>
+                <span className="font-medium text-xs">+234 701 822 2950</span>
               </div>
             </div>
             
             {/* CTA Button */}
             <Button asChild variant="gradient" size="sm" className="hover-lift-glow">
-              <Link href="/contact">Get Quote</Link>
+              <Link href="/admin/login">Login</Link>
             </Button>
           </div>
 
@@ -159,21 +159,21 @@ export function Header() {
                       <div className="flex items-center space-x-3 bg-primary/5 rounded-xl p-4">
                         <Phone className="h-5 w-5 text-primary" />
                         <div>
-                          <p className="text-foreground font-semibold">+234 123 456 7890</p>
+                          <p className="text-foreground font-semibold">+234 701 822 2950</p>
                           <p className="text-muted-foreground text-sm">Mon-Fri 8AM-6PM WAT</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3 bg-secondary/5 rounded-xl p-4">
                         <Mail className="h-5 w-5 text-secondary" />
                         <div>
-                          <p className="text-foreground font-semibold">info@absadmultisynergy.com</p>
+                          <p className="text-foreground font-semibold">contact@absadmultisynergy.com</p>
                           <p className="text-muted-foreground text-sm">24/7 Email Support</p>
                         </div>
                       </div>
                     </div>
                     <Button asChild variant="gradient" className="w-full hover-lift-glow">
-                      <Link href="/contact" onClick={() => setIsOpen(false)}>
-                        Get Quote
+                      <Link href="/admin/login" onClick={() => setIsOpen(false)}>
+                        Login
                       </Link>
                     </Button>
                   </div>

@@ -12,24 +12,36 @@ import { initPerformanceTesting } from './performance-testing'
 export function initializePerformance() {
   if (typeof window === 'undefined') return
 
-  // Initialize core performance optimizations
-  initPerformanceOptimizations()
+  // Wait for DOM to be ready to avoid hydration issues
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initPerformanceOptimizations()
+    })
+  } else {
+    initPerformanceOptimizations()
+  }
 
-  // Add critical resource hints
+  // Add critical resource hints (safe to run immediately)
   addCriticalResourceHints()
 
-  // Setup intersection observer for lazy loading
-  setupIntersectionObserver()
+  // Setup intersection observer for lazy loading (after DOM ready)
+  requestAnimationFrame(() => {
+    setupIntersectionObserver()
+  })
 
   // Initialize service worker for caching (if available)
   initializeServiceWorker()
 
-  // Setup performance monitoring
-  setupPerformanceMonitoring()
+  // Setup performance monitoring (after initial render)
+  setTimeout(() => {
+    setupPerformanceMonitoring()
+  }, 1000)
 
   // Initialize performance testing in development
   if (process.env.NODE_ENV === 'development') {
-    initPerformanceTesting()
+    setTimeout(() => {
+      initPerformanceTesting()
+    }, 2000)
   }
 }
 
@@ -265,21 +277,28 @@ export function preloadCriticalResources() {
  * Setup viewport-based optimizations
  */
 export function setupViewportOptimizations() {
-  // Reduce animations on small screens or slow connections
-  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
-  const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')
-  const isSmallScreen = window.innerWidth < 768
+  try {
+    // Reduce animations on small screens or slow connections
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
+    const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')
+    const isSmallScreen = window.innerWidth < 768
 
-  if (isSlowConnection || isSmallScreen) {
-    document.documentElement.classList.add('reduce-animations')
-  }
+    // Use requestAnimationFrame to avoid hydration conflicts
+    requestAnimationFrame(() => {
+      if (isSlowConnection || isSmallScreen) {
+        document.documentElement.classList.add('reduce-animations')
+      }
 
-  // Add viewport-based classes
-  if (window.innerWidth < 768) {
-    document.documentElement.classList.add('mobile-viewport')
-  } else if (window.innerWidth < 1024) {
-    document.documentElement.classList.add('tablet-viewport')
-  } else {
-    document.documentElement.classList.add('desktop-viewport')
+      // Add viewport-based classes
+      if (window.innerWidth < 768) {
+        document.documentElement.classList.add('mobile-viewport')
+      } else if (window.innerWidth < 1024) {
+        document.documentElement.classList.add('tablet-viewport')
+      } else {
+        document.documentElement.classList.add('desktop-viewport')
+      }
+    })
+  } catch (error) {
+    console.warn('Failed to setup viewport optimizations:', error)
   }
 }

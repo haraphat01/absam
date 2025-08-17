@@ -196,7 +196,7 @@ export function InvoiceList({
   }
 
   const formatCurrency = (amount) => {
-    return `₦${Number(amount).toLocaleString()}`
+    return `$${Number(amount).toLocaleString()}`
   }
 
   if (isLoading) {

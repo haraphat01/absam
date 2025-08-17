@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase'
-import { withCache, cacheConfig } from '@/lib/api-cache'
+import { createServerClient } from '@/lib/supabase'
 import { optimizedQueries } from '@/lib/database-optimizations'
 
-async function handler(request) {
+export async function GET(request) {
   try {
-    const supabase = createClient()
+    const supabase = createServerClient()
     
     // Get dashboard metrics using optimized queries
     const { data: metrics, error, fromCache } = await optimizedQueries.getDashboardMetrics(supabase)
@@ -13,17 +12,23 @@ async function handler(request) {
     if (error) {
       console.error('Error fetching dashboard metrics:', error)
       return NextResponse.json(
-        { error: 'Failed to fetch dashboard metrics' },
+        { 
+          success: false, 
+          error: { message: 'Failed to fetch dashboard metrics' }
+        },
         { status: 500 }
       )
     }
 
-    // Add cache information to response
+    // Format response to match frontend expectations
     const response = {
-      ...metrics,
-      _meta: {
-        fromCache,
-        timestamp: new Date().toISOString(),
+      success: true,
+      data: {
+        ...metrics,
+        _meta: {
+          fromCache,
+          timestamp: new Date().toISOString(),
+        }
       }
     }
 
@@ -31,11 +36,11 @@ async function handler(request) {
   } catch (error) {
     console.error('Dashboard metrics API error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        success: false, 
+        error: { message: 'Internal server error' }
+      },
       { status: 500 }
     )
   }
 }
-
-// Apply caching middleware with 5-minute cache
-export const GET = withCache(handler, cacheConfig.dynamic)

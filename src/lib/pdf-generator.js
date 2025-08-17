@@ -227,9 +227,9 @@ const styles = StyleSheet.create({
 // PDF Document Component
 const InvoicePDF = ({ invoice, companySettings }) => {
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-NG', {
+    return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: companySettings?.currency || 'NGN',
+      currency: 'USD',
       minimumFractionDigits: 2,
     }).format(amount)
   }
@@ -328,14 +328,6 @@ const InvoicePDF = ({ invoice, companySettings }) => {
 
         {/* Totals Section */}
         <View style={styles.totalsSection}>
-          <View style={styles.totalRow}>
-            <Text style={styles.totalLabel}>Subtotal:</Text>
-            <Text style={styles.totalValue}>{formatCurrency(invoice.subtotal)}</Text>
-          </View>
-          <View style={styles.totalRow}>
-            <Text style={styles.totalLabel}>VAT (7.5%):</Text>
-            <Text style={styles.totalValue}>{formatCurrency(invoice.tax)}</Text>
-          </View>
           <View style={styles.grandTotalRow}>
             <Text style={styles.grandTotalLabel}>Total Amount:</Text>
             <Text style={styles.grandTotalValue}>{formatCurrency(invoice.total_amount)}</Text>
@@ -387,7 +379,8 @@ const InvoicePDF = ({ invoice, companySettings }) => {
 export const generateInvoicePDF = async (invoice, companySettings) => {
   try {
     const doc = <InvoicePDF invoice={invoice} companySettings={companySettings} />
-    const pdfBuffer = await pdf(doc).toBuffer()
+    const pdfDoc = pdf(doc)
+    const pdfBuffer = await pdfDoc.toBuffer()
     return pdfBuffer
   } catch (error) {
     console.error('Error generating PDF:', error)

@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
-import { useAuth } from '@/providers/auth-provider'
+import { useSupabaseAuth } from '@/hooks/use-supabase-auth'
 import { usePermissions } from '@/components/auth/protected-route'
 import { cn } from '@/lib/utils'
 import {
@@ -86,7 +86,7 @@ const adminOnlyNavigation = [
 export function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false)
-  const { userProfile, signOut } = useAuth()
+  const { userProfile, signOut } = useSupabaseAuth()
   const { isAdmin, canManageUsers, canManageSettings } = usePermissions()
   const pathname = usePathname()
   const router = useRouter()

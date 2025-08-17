@@ -21,7 +21,7 @@ import {
   TableRow 
 } from '@/components/ui/table'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import { useAuth } from '@/providers/auth-provider'
+import { useSupabaseAuth } from '@/hooks/use-supabase-auth'
 import { 
   MoreHorizontal, 
   Shield, 
@@ -40,7 +40,7 @@ export function UserList({
   isUpdating = false, 
   isDeleting = false 
 }) {
-  const { userProfile } = useAuth()
+  const { userProfile } = useSupabaseAuth()
 
   const getInitials = (email) => {
     return email?.split('@')[0]?.slice(0, 2)?.toUpperCase() || 'U'

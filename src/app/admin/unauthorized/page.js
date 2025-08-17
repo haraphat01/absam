@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { AlertTriangle, ArrowLeft, Home } from 'lucide-react'
-import { useAuth } from '@/providers/auth-provider'
+import { useSupabaseAuth } from '@/hooks/use-supabase-auth'
 
 export default function UnauthorizedPage() {
   const router = useRouter()
-  const { signOut, userProfile } = useAuth()
+  const { signOut, userProfile } = useSupabaseAuth()
 
   const handleSignOut = async () => {
     await signOut()

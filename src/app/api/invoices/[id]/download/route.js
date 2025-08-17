@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
-import { getInvoiceById, getCompanySettings } from '@/lib/database'
-import { generateInvoicePDF } from '@/lib/pdf-generator'
+import { getInvoiceByIdServer, getCompanySettingsServer } from '@/lib/database-server'
+import { generateBasicPDF } from '@/lib/pdf-generator-basic'
 
 export async function GET(request, { params }) {
   try {
-    const { id } = params
+    const { id } = await params
 
     if (!id) {
       return NextResponse.json(
@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
     }
 
     // Fetch invoice data
-    const invoice = await getInvoiceById(id)
+    const invoice = await getInvoiceByIdServer(id)
     if (!invoice) {
       return NextResponse.json(
         { success: false, error: 'Invoice not found' },
@@ -23,10 +23,10 @@ export async function GET(request, { params }) {
     }
 
     // Fetch company settings for banking details
-    const companySettings = await getCompanySettings()
+    const companySettings = await getCompanySettingsServer()
 
     // Generate PDF
-    const pdfBuffer = await generateInvoicePDF(invoice, companySettings)
+    const pdfBuffer = await generateBasicPDF(invoice)
 
     // Create filename
     const filename = `invoice-${invoice.invoice_number}.pdf`
@@ -37,7 +37,7 @@ export async function GET(request, { params }) {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${filename}"`,
-        'Content-Length': pdfBuffer.length.toString(),
+        'Content-Length': Buffer.byteLength(pdfBuffer).toString(),
       },
     })
   } catch (error) {

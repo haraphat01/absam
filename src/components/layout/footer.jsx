@@ -4,12 +4,12 @@ import * as React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Globe, 
-  Truck, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Globe,
+  Truck,
   Ship,
   ExternalLink,
   ArrowUp
@@ -58,7 +58,7 @@ export function Footer() {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-pattern-dots bg-pattern" />
       </div>
-      
+
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-secondary/5" />
 
@@ -78,7 +78,7 @@ export function Footer() {
                 </div>
               </div>
               <p className="text-slate-300 mb-8 leading-relaxed text-base">
-                Leading import and export company specializing in premium charcoal and firewood. 
+                Leading import and export company specializing in premium charcoal and firewood.
                 We deliver quality products with reliable logistics solutions across global markets.
               </p>
               <div className="flex items-center space-x-3 text-sm text-slate-300 bg-green-500/10 rounded-xl px-4 py-3 border border-green-500/20">
@@ -152,11 +152,10 @@ export function Footer() {
                   <MapPin className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-white font-bold">Jebba, Kwara State, Nigeria</p>
-                    <p className="text-slate-300 text-sm">West Africa Hub</p>
                   </div>
                 </div>
               </div>
-              
+
               {/* Enhanced Quick Actions */}
               <div className="space-y-4">
                 <Button asChild variant="glass" className="w-full hover-lift-glow">
@@ -192,7 +191,7 @@ export function Footer() {
                 </Link>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-3 text-sm text-slate-300 bg-white/5 rounded-full px-4 py-2">
                 <Globe className="h-4 w-4 text-primary" />
@@ -200,7 +199,7 @@ export function Footer() {
               </div>
               <div className="h-6 w-px bg-white/20" />
               <div className="text-sm text-slate-300 font-medium">
-                Made with ❤️ in Nigeria
+                Built with ❤️ by <Link href="https://pencildigitals.com" className="text-white hover:text-primary transition-colors">Pencil Digitals</Link>
               </div>
             </div>
           </div>

@@ -503,9 +503,9 @@ The Absad MultiSynergy Team
 
 export const generateInvoiceEmailTemplate = (invoice, companySettings) => {
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-NG', {
+    return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: companySettings?.currency || 'NGN',
+      currency: 'USD',
       minimumFractionDigits: 2,
     }).format(amount)
   }
@@ -687,7 +687,7 @@ export const generateInvoiceEmailTemplate = (invoice, companySettings) => {
 
           <div class="greeting">
             <p>Dear ${invoice.client_name},</p>
-            <p>Thank you for your business! Please find attached your invoice for the products/services provided.</p>
+            <p>Hey, ${companySettings?.account_name || 'Absad MultiSynergy Limited'} sent you an invoice. Kindly find it attached and make payment with the banking info attached.</p>
           </div>
 
           <div class="invoice-details">
@@ -753,7 +753,7 @@ export const generateInvoiceEmailTemplate = (invoice, companySettings) => {
             
             <div class="contact-info">
               <p>For questions about this invoice, please contact us:</p>
-              <p>Email: invoices@absadmultisynergy.com</p>
+              <p>Email: contact@absadmultisynergy.com</p>
               <p>This is an automated email. Please do not reply directly to this message.</p>
             </div>
           </div>
@@ -766,7 +766,7 @@ Invoice ${invoice.invoice_number} from Absad MultiSynergy Limited
 
 Dear ${invoice.client_name},
 
-Thank you for your business! Please find attached your invoice for the products/services provided.
+Hey, ${companySettings?.account_name || 'Absad MultiSynergy Limited'} sent you an invoice. Kindly find it attached and make payment with the banking info attached.
 
 Invoice Details:
 - Invoice Number: ${invoice.invoice_number}
@@ -803,9 +803,9 @@ This is an automated email. Please do not reply directly to this message.
 
 export const generatePaymentReminderTemplate = (invoice, companySettings) => {
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-NG', {
+    return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: companySettings?.currency || 'NGN',
+      currency: 'USD',
       minimumFractionDigits: 2,
     }).format(amount)
   }

@@ -34,13 +34,13 @@ import {
   DollarSign,
   FileText
 } from '@/components/ui/icons'
-import { getInvoiceById, updateInvoiceStatus, deleteInvoice, getCompanySettings } from '@/lib/database'
+import { getInvoiceById, updateInvoiceStatus, deleteInvoice } from '@/lib/database'
 import { cn } from '@/lib/utils'
 
 export default function ViewInvoicePage({ params }) {
   const router = useRouter()
   const queryClient = useQueryClient()
-  const { id } = params
+  const { id } = React.use(params)
 
   // Fetch invoice data
   const { data: invoice, isLoading, error } = useQuery({
@@ -52,7 +52,17 @@ export default function ViewInvoicePage({ params }) {
   // Fetch company settings
   const { data: companySettings } = useQuery({
     queryKey: ['company-settings'],
-    queryFn: getCompanySettings,
+    queryFn: async () => {
+      const response = await fetch('/api/settings/company')
+      if (!response.ok) {
+        throw new Error('Failed to fetch company settings')
+      }
+      const result = await response.json()
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to fetch company settings')
+      }
+      return result.data
+    },
   })
 
   // Update status mutation
@@ -102,7 +112,7 @@ export default function ViewInvoicePage({ params }) {
   }
 
   const formatCurrency = (amount) => {
-    return `₦${Number(amount).toLocaleString()}`
+    return `$${Number(amount).toLocaleString()}`
   }
 
   const getStatusIcon = (status) => {
@@ -179,8 +189,8 @@ export default function ViewInvoicePage({ params }) {
   // Calculate totals
   const items = invoice.items || []
   const subtotal = items.reduce((sum, item) => sum + (item.quantity * item.price), 0)
-  const tax = subtotal * 0.075 // 7.5% VAT
-  const total = subtotal + tax
+  // VAT removed - no tax calculation
+  const total = subtotal
 
   return (
     <div className="space-y-6">
@@ -330,15 +340,6 @@ export default function ViewInvoicePage({ params }) {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span>Subtotal:</span>
-                  <span>{formatCurrency(subtotal)}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>VAT (7.5%):</span>
-                  <span>{formatCurrency(tax)}</span>
-                </div>
-                <Separator />
                 <div className="flex justify-between text-lg font-semibold">
                   <span>Total:</span>
                   <span>{formatCurrency(total)}</span>

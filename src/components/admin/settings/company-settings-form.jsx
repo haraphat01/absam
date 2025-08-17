@@ -12,8 +12,8 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { Save, RotateCcw } from '@/components/ui/icons'
 
 const CURRENCY_OPTIONS = [
-  { value: 'NGN', label: 'Nigerian Naira (NGN)', symbol: '₦' },
   { value: 'USD', label: 'US Dollar (USD)', symbol: '$' },
+  { value: 'NGN', label: 'Nigerian Naira (NGN)', symbol: '₦' },
   { value: 'EUR', label: 'Euro (EUR)', symbol: '€' },
   { value: 'GBP', label: 'British Pound (GBP)', symbol: '£' },
 ]

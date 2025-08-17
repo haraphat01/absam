@@ -116,7 +116,7 @@ export function SendInvoiceModal({
   }
 
   const formatCurrency = (amount) => {
-    return `₦${Number(amount).toLocaleString()}`
+    return `$${Number(amount).toLocaleString()}`
   }
 
   if (!invoice) return null

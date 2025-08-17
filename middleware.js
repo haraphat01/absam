@@ -115,12 +115,8 @@ export async function middleware(req) {
 
   // Admin routes protection
   if (req.nextUrl.pathname.startsWith('/admin')) {
-    // Allow access to login page
-    if (req.nextUrl.pathname === '/admin/login') {
-      // If already authenticated, redirect to admin dashboard
-      if (session) {
-        return NextResponse.redirect(new URL('/admin', req.url))
-      }
+    // Allow access to login page and auth callback
+    if (req.nextUrl.pathname === '/admin/login' || req.nextUrl.pathname.startsWith('/auth/')) {
       return response
     }
 
@@ -129,17 +125,18 @@ export async function middleware(req) {
       return NextResponse.redirect(new URL('/admin/login', req.url))
     }
 
-    // Check if user exists in our users table and is active
+    // Check if user exists in our users table and has admin role
     try {
       const { data: userProfile } = await supabase
         .from('users')
         .select('*')
         .eq('id', session.user.id)
         .eq('is_active', true)
+        .eq('role', 'ADMIN')
         .single()
 
       if (!userProfile) {
-        // User not found or inactive, redirect to login
+        // User not found, inactive, or not admin, redirect to login
         const redirectResponse = NextResponse.redirect(new URL('/admin/login', req.url))
         // Clear the session
         await supabase.auth.signOut()

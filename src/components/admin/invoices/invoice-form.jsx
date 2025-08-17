@@ -64,8 +64,7 @@ export function InvoiceForm({
     return sum + (quantity * price)
   }, 0) || 0
 
-  const tax = subtotal * 0.075 // 7.5% VAT
-  const total = subtotal + tax
+  const total = subtotal // No VAT
 
   const addItem = () => {
     append({ description: '', quantity: 1, price: 0 })
@@ -87,7 +86,6 @@ export function InvoiceForm({
         total: Number(item.quantity) * Number(item.price)
       })),
       subtotal,
-      tax,
       totalAmount: total
     }
     onSubmit(formattedData)
@@ -217,7 +215,7 @@ export function InvoiceForm({
                 </div>
                 
                 <div className="md:col-span-2 space-y-2">
-                  <Label htmlFor={`items.${index}.price`}>Price (₦)</Label>
+                  <Label htmlFor={`items.${index}.price`}>Price ($)</Label>
                   <Input
                     type="number"
                     min="0"
@@ -235,7 +233,7 @@ export function InvoiceForm({
                 <div className="md:col-span-2 space-y-2">
                   <Label>Total</Label>
                   <div className="h-10 px-3 py-2 bg-muted rounded-md flex items-center text-sm font-medium">
-                    ₦{((watchedItems?.[index]?.quantity || 0) * (watchedItems?.[index]?.price || 0)).toLocaleString()}
+                    ${((watchedItems?.[index]?.quantity || 0) * (watchedItems?.[index]?.price || 0)).toLocaleString()}
                   </div>
                 </div>
               </div>
@@ -255,18 +253,9 @@ export function InvoiceForm({
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span>Subtotal:</span>
-              <span>₦{subtotal.toLocaleString()}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span>VAT (7.5%):</span>
-              <span>₦{tax.toLocaleString()}</span>
-            </div>
-            <Separator />
             <div className="flex justify-between text-lg font-semibold">
               <span>Total:</span>
-              <span>₦{total.toLocaleString()}</span>
+              <span>${total.toLocaleString()}</span>
             </div>
           </div>
 

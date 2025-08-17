@@ -125,13 +125,29 @@ export const optimizedQueries = {
           .gte('created_at', new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString())
       ])
 
+      // Get detailed invoice breakdown
+      const [paidInvoicesResult, unpaidInvoicesResult] = await Promise.all([
+        supabase
+          .from('invoices')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'PAID')
+          .gte('created_at', new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()),
+        
+        supabase
+          .from('invoices')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'UNPAID')
+          .gte('created_at', new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString())
+      ])
+
       const metrics = {
         invoices: {
           total: invoicesResult.count || 0,
-          // Additional invoice status breakdown would require separate queries
+          paid: paidInvoicesResult.count || 0,
+          unpaid: unpaidInvoicesResult.count || 0,
         },
         testimonials: testimonialsResult.count || 0,
-        contacts: contactsResult.count || 0,
+        inquiries: contactsResult.count || 0,
         lastUpdated: new Date().toISOString()
       }
 

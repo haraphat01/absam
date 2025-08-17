@@ -549,7 +549,7 @@ export default function AboutPage() {
                         </div>
                         <div>
                           <h3 className="text-2xl font-bold text-foreground">Main Warehouse Complex</h3>
-                          <p className="text-muted-foreground">Lagos, Nigeria</p>
+                          <p className="text-muted-foreground">Jebba, Kwara State, Nigeria</p>
                         </div>
                       </div>
                       
