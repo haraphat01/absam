@@ -330,21 +330,22 @@ export const getPublicUrl = (bucket, path) => {
 
 // Generate invoice number function
 export const generateInvoiceNumber = async () => {
+  // Try RPC via anon client with a short timeout; fallback to client-side ID
   try {
-    const serverClient = createServerClient()
-    const { data, error } = await serverClient
-      .rpc('generate_invoice_number')
-    
-    if (error) throw error
-    return data
-  } catch (error) {
-    // Fallback to client-side generation if RPC function doesn't exist
-    const now = new Date()
-    const year = now.getFullYear()
-    const month = String(now.getMonth() + 1).padStart(2, '0')
-    const timestamp = now.getTime().toString().slice(-4)
-    return `INV-${year}${month}-${timestamp}`
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 3000)
+    const { data, error } = await supabase
+      .rpc('generate_invoice_number', {}, { signal: controller.signal })
+    clearTimeout(timeout)
+    if (!error && data) return data
+  } catch (e) {
+    // ignore and fallback
   }
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const timestamp = now.getTime().toString().slice(-5)
+  return `INV-${year}${month}-${timestamp}`
 }
 
 // Get invoice by ID

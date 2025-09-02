@@ -27,7 +27,7 @@ export function SendInvoiceModal({
 }) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [isSending, setIsSending] = React.useState(false)
-  const [message, setMessage] = React.useState('')
+  // Removed personal message feature
   const [emailPreview, setEmailPreview] = React.useState(null)
   const [showPreview, setShowPreview] = React.useState(false)
   const [sendResult, setSendResult] = React.useState(null)
@@ -35,7 +35,6 @@ export function SendInvoiceModal({
   // Reset state when modal opens/closes
   React.useEffect(() => {
     if (isOpen) {
-      setMessage('')
       setEmailPreview(null)
       setShowPreview(false)
       setSendResult(null)
@@ -77,8 +76,7 @@ export function SendInvoiceModal({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          type: 'invoice',
-          message: message.trim() || undefined
+          type: 'invoice'
         }),
       })
 
@@ -180,21 +178,6 @@ export function SendInvoiceModal({
                   disabled
                   className="bg-muted"
                 />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">Personal Message (Optional)</Label>
-                <Textarea
-                  id="message"
-                  placeholder="Add a personal message to include with the invoice email..."
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  rows={3}
-                  className="resize-none"
-                />
-                <p className="text-xs text-muted-foreground">
-                  This message will appear at the top of the email before the invoice details.
-                </p>
               </div>
             </div>
 
@@ -316,7 +299,7 @@ export function SendInvoiceModal({
                 ) : (
                   <>
                     <Send className="h-4 w-4 mr-2" />
-                    Send Email
+                    Send Invoice
                   </>
                 )}
               </Button>

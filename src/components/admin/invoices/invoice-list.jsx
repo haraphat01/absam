@@ -531,7 +531,7 @@ export function InvoiceList({
                               onClick={() => handleSendEmail(invoice)}
                             >
                               <Mail className="h-4 w-4 mr-2" />
-                              Send Email
+                              Send Invoice
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem

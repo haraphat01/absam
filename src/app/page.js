@@ -531,11 +531,11 @@ export default function Home() {
                     <p className="text-muted-foreground text-lg font-medium">Speak directly with our team</p>
                   </div>
                   <div className="space-y-3">
-                    <a href="tel:+2348123456789" className="block text-xl font-bold text-primary hover:text-primary/80 transition-colors">
-                      +234 812 345 6789
+                    <a href="tel:+2348071340418" className="block text-xl font-bold text-primary hover:text-primary/80 transition-colors">
+                      +234 807 134 0418
                     </a>
-                    <a href="tel:+2347098765432" className="block text-xl font-bold text-primary hover:text-primary/80 transition-colors">
-                      +234 709 876 5432
+                    <a href="tel:+2347018222950" className="block text-xl font-bold text-primary hover:text-primary/80 transition-colors">
+                      +234 701 822 2950
                     </a>
                   </div>
                   <p className="text-sm text-muted-foreground font-medium">

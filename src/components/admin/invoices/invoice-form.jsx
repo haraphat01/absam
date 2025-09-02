@@ -16,8 +16,9 @@ import { cn } from '@/lib/utils'
 
 const invoiceItemSchema = z.object({
   description: z.string().min(1, 'Description is required'),
-  quantity: z.number().min(1, 'Quantity must be at least 1'),
-  price: z.number().min(0, 'Price must be positive'),
+  quantity: z.preprocess((v) => (v === '' || v == null ? NaN : Number(v)), z.number().min(1, 'Quantity must be at least 1')),
+  unit: z.preprocess((v) => (v === '' || v == null ? NaN : Number(v)), z.number().min(0, 'Unit (tons) must be >= 0')),
+  price: z.preprocess((v) => (v === '' || v == null ? NaN : Number(v)), z.number().min(0, 'Price must be positive')),
 })
 
 const invoiceFormSchema = z.object({
@@ -45,7 +46,7 @@ export function InvoiceForm({
     defaultValues: initialData || {
       clientName: '',
       clientEmail: '',
-      items: [{ description: '', quantity: 1, price: 0 }],
+      items: [{ description: '', quantity: 1, unit: 0, price: 0 }],
       status: 'UNPAID'
     }
   })
@@ -57,17 +58,17 @@ export function InvoiceForm({
 
   const watchedItems = watch('items')
   
-  // Calculate totals
+  // Calculate totals (Unit (tons) * Price)
   const subtotal = watchedItems?.reduce((sum, item) => {
-    const quantity = Number(item.quantity) || 0
+    const unit = Number(item.unit) || 0
     const price = Number(item.price) || 0
-    return sum + (quantity * price)
+    return sum + (unit * price)
   }, 0) || 0
 
   const total = subtotal // No VAT
 
   const addItem = () => {
-    append({ description: '', quantity: 1, price: 0 })
+    append({ description: '', quantity: 1, unit: 0, price: 0 })
   }
 
   const removeItem = (index) => {
@@ -82,8 +83,9 @@ export function InvoiceForm({
       items: data.items.map(item => ({
         ...item,
         quantity: Number(item.quantity),
+        unit: Number(item.unit) || 0,
         price: Number(item.price),
-        total: Number(item.quantity) * Number(item.price)
+        total: (Number(item.unit) || 0) * Number(item.price)
       })),
       subtotal,
       totalAmount: total
@@ -215,6 +217,22 @@ export function InvoiceForm({
                 </div>
                 
                 <div className="md:col-span-2 space-y-2">
+                  <Label htmlFor={`items.${index}.unit`}>Unit (tons)</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    {...register(`items.${index}.unit`, { valueAsNumber: true })}
+                    className={cn(errors.items?.[index]?.unit && 'border-destructive')}
+                  />
+                  {errors.items?.[index]?.unit && (
+                    <p className="text-sm text-destructive">
+                      {errors.items[index].unit.message}
+                    </p>
+                  )}
+                </div>
+                
+                <div className="md:col-span-2 space-y-2">
                   <Label htmlFor={`items.${index}.price`}>Price ($)</Label>
                   <Input
                     type="number"
@@ -233,7 +251,7 @@ export function InvoiceForm({
                 <div className="md:col-span-2 space-y-2">
                   <Label>Total</Label>
                   <div className="h-10 px-3 py-2 bg-muted rounded-md flex items-center text-sm font-medium">
-                    ${((watchedItems?.[index]?.quantity || 0) * (watchedItems?.[index]?.price || 0)).toLocaleString()}
+                    ${((watchedItems?.[index]?.unit || 0) * (watchedItems?.[index]?.price || 0)).toLocaleString()}
                   </div>
                 </div>
               </div>
