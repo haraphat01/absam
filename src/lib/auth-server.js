@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
+import { createServerClient as createServiceClient } from '@/lib/supabase'
 
 // Create a Supabase client for server-side operations
 export async function createServerSupabaseClient() {
@@ -44,6 +45,31 @@ export async function createServerSupabaseClient() {
 // Verify user authentication and get user profile
 export async function verifyAuth(requiredRole = null) {
   try {
+    // First, try Authorization Bearer token (for cases where cookies aren't included)
+    const hdrs = headers()
+    const authHeader = hdrs.get('authorization') || hdrs.get('Authorization')
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const accessToken = authHeader.replace('Bearer ', '').trim()
+      const service = createServiceClient()
+      const { data: { user }, error: userErr } = await service.auth.getUser(accessToken)
+      if (userErr) {
+        // Fallback to cookie-based if token invalid
+      } else if (user) {
+        // Load profile
+        const { data: userProfile, error: profileError } = await service
+          .from('users')
+          .select('*')
+          .eq('id', user.id)
+          .eq('is_active', true)
+          .single()
+        if (!profileError && (!requiredRole || userProfile?.role === requiredRole)) {
+          return { success: true, user, userProfile, supabase: service }
+        }
+        return { success: false, error: 'User profile not found or insufficient role', status: 403 }
+      }
+    }
+
+    // Cookie-based auth (default)
     const { supabase, session } = await createServerSupabaseClient()
     
     if (!session?.user) {

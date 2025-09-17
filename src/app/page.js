@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { OptimizedImage, HeroImage } from '@/components/ui/optimized-image'
 import { FadeInSection, SectionTransition } from '@/components/ui/page-transition'
 import { LazyComponent } from '@/components/ui/lazy-component'
+import TestimonialsSection from '@/components/testimonials/testimonials-section'
 
 export default function Home() {
   return (
@@ -209,7 +210,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="hover-lift-glow">
-                  <Link href="/testimonials">
+                  <Link href="#testimonials">
                     <Play className="mr-2 h-5 w-5" />
                     Watch Testimonials
                   </Link>
@@ -494,6 +495,8 @@ export default function Home() {
         </div>
       </section>
 
+      <TestimonialsSection />
+
       {/* Enhanced Contact Information Section */}
       <section className="section-padding bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
         {/* Background Pattern */}
@@ -668,7 +671,7 @@ export default function Home() {
                 </Link>
               </Button>
               <Button asChild size="xl" variant="ghost" className="text-white border-white/30 hover:bg-white/10 hover:border-white/50 px-12 py-6 text-xl font-bold backdrop-blur-sm hover-lift-glow">
-                <Link href="/testimonials">
+                <Link href="#testimonials">
                   <Play className="mr-3 h-7 w-7" />
                   Watch Success Stories
                 </Link>

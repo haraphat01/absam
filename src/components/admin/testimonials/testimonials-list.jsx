@@ -53,7 +53,7 @@ export default function TestimonialsList({ testimonials, onDelete, onRefresh }) 
   }
 
   const handleViewOnSite = () => {
-    window.open('/testimonials', '_blank')
+    window.open('/#testimonials', '_blank')
   }
 
   if (testimonials.length === 0) {

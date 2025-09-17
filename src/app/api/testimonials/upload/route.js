@@ -5,8 +5,8 @@ import { withRateLimit, fileUpload, sanitize } from '@/lib/security'
 import { videoUploadSchema } from '@/lib/validations'
 
 const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50MB
-const ALLOWED_TYPES = ['video/mp4', 'video/webm', 'video/ogg']
-const ALLOWED_EXTENSIONS = ['mp4', 'webm', 'ogg']
+const ALLOWED_TYPES = ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime', 'video/x-msvideo']
+const ALLOWED_EXTENSIONS = ['mp4', 'webm', 'ogg', 'mov', 'avi']
 
 async function POST(request) {
   try {

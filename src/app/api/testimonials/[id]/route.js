@@ -12,22 +12,19 @@ export async function DELETE(request, { params }) {
       )
     }
 
-    // In a real implementation, you would delete from Supabase
-    // const { error } = await supabase
-    //   .from('testimonials')
-    //   .delete()
-    //   .eq('id', id)
+    // Delete from Supabase database
+    const { error } = await supabase
+      .from('testimonials')
+      .delete()
+      .eq('id', id)
 
-    // if (error) {
-    //   console.error('Database error:', error)
-    //   return NextResponse.json(
-    //     { error: 'Failed to delete testimonial' },
-    //     { status: 500 }
-    //   )
-    // }
-
-    // For now, just return success (mock implementation)
-    console.log(`Mock: Deleting testimonial with ID: ${id}`)
+    if (error) {
+      console.error('Database error:', error)
+      return NextResponse.json(
+        { error: 'Failed to delete testimonial' },
+        { status: 500 }
+      )
+    }
 
     return NextResponse.json({ 
       success: true, 

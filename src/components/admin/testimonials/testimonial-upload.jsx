@@ -110,21 +110,6 @@ export default function TestimonialUpload({ onClose, onSuccess }) {
     }
   }
 
-  const simulateUpload = () => {
-    return new Promise((resolve) => {
-      let progress = 0
-      const interval = setInterval(() => {
-        progress += Math.random() * 15
-        if (progress >= 100) {
-          progress = 100
-          clearInterval(interval)
-          resolve()
-        }
-        setUploadProgress(Math.min(progress, 100))
-      }, 200)
-    })
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     
@@ -137,29 +122,45 @@ export default function TestimonialUpload({ onClose, onSuccess }) {
     setUploadProgress(0)
     
     try {
-      // Simulate file upload progress
-      await simulateUpload()
-      
-      // Create mock testimonial data
-      const newTestimonial = {
-        id: Date.now().toString(),
-        video_url: URL.createObjectURL(formData.video_file),
-        title: formData.title,
-        client_name: formData.client_name,
-        created_at: new Date().toISOString(),
-        uploaded_by: 'current-user',
-        users: { email: 'admin@absadmultisynergy.com' }
+      // Create FormData for file upload
+      const uploadFormData = new FormData()
+      uploadFormData.append('video_file', formData.video_file)
+      uploadFormData.append('title', formData.title)
+      uploadFormData.append('client_name', formData.client_name)
+
+      // Try to include current access token if available (improves reliability on some setups)
+      let accessToken
+      try {
+        const { supabase } = await import('@/lib/supabase')
+        const { data } = await supabase.auth.getSession()
+        accessToken = data?.session?.access_token
+      } catch {}
+
+      const response = await fetch('/api/testimonials/upload', {
+        method: 'POST',
+        body: uploadFormData,
+        credentials: 'include',
+        headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined,
+      })
+
+      const result = await response.json().catch(() => ({}))
+
+      if (!response.ok) {
+        const serverMessage = result?.error?.message || result?.message
+        const statusHint = response.status === 401
+          ? 'You may need to log in again as an admin.'
+          : response.status === 403
+          ? 'Your account lacks permission (ADMIN required).'
+          : null
+        const details = serverMessage || statusHint || response.statusText || 'Upload failed.'
+        throw new Error(details)
       }
-      
-      // In a real implementation, you would upload to Supabase Storage here
-      // const { data, error } = await supabase.storage
-      //   .from('testimonials')
-      //   .upload(`testimonials/${Date.now()}-${formData.video_file.name}`, formData.video_file)
-      
-      onSuccess(newTestimonial)
+
+      // Call success callback with the uploaded testimonial
+      onSuccess(result.data)
     } catch (err) {
       console.error('Upload error:', err)
-      setError('Failed to upload testimonial. Please try again.')
+      setError(err.message || 'Failed to upload testimonial. Please try again.')
     } finally {
       setUploading(false)
       setUploadProgress(0)
