@@ -141,13 +141,7 @@ export function Footer() {
                     <p className="text-slate-300 text-sm">Mon-Fri 8AM-6PM WAT</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4 bg-secondary/5 rounded-xl p-4 border border-secondary/20 hover:bg-secondary/10 transition-colors duration-300">
-                  <Mail className="h-6 w-6 text-secondary mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="text-white font-bold">info@absadmultisynergy.com</p>
-                    <p className="text-slate-300 text-sm">24/7 Email Support</p>
-                  </div>
-                </div>
+               
                 <div className="flex items-start space-x-4 bg-accent/5 rounded-xl p-4 border border-accent/20 hover:bg-accent/10 transition-colors duration-300">
                   <MapPin className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                   <div>

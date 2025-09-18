@@ -298,107 +298,157 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
-            {/* Enhanced Premium Charcoal */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-24">
+            {/* Hookah Shisha (Ayin Fingers Charcoal) */}
             <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white hover-lift cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative p-16">
-                <div className="space-y-8">
-                  <div className="flex items-center space-x-6">
-                    <div className="h-20 w-20 rounded-3xl bg-gradient-to-br from-orange-500 via-red-600 to-orange-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-elegant-lg">
-                      <Package className="h-10 w-10 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative p-12">
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-orange-500 via-red-600 to-orange-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-elegant-lg">
+                      <Package className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-4xl font-black">Premium Charcoal</h3>
-                      <p className="text-xl text-slate-300 font-medium">High-grade hardwood charcoal</p>
+                      <h3 className="text-2xl font-black">Hookah Shisha</h3>
+                      <p className="text-lg text-slate-300 font-medium">Ayin Fingers Charcoal</p>
                     </div>
                   </div>
                   
-                  <p className="text-xl text-slate-300 leading-relaxed font-medium">
-                    Our premium charcoal is produced from carefully selected hardwood, ensuring 
-                    long burn time, high heat output, and minimal ash production.
+                  <p className="text-lg text-slate-300 leading-relaxed font-medium">
+                    Premium hookah charcoal with finger-style shape, perfect for hookah smoking 
+                    with long-lasting burn and consistent heat output.
                   </p>
                   
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">Long Burn Time</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">High Heat Output</span>
-                      </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Perfect for hookah smoking</span>
                     </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">Low Ash Content</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">Eco-Friendly</span>
-                      </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Long-lasting burn</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Consistent heat output</span>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-white/20">
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-300 font-medium">Price:</span>
+                      <span className="text-xl font-bold text-orange-400">450 USD/Tonne</span>
                     </div>
                   </div>
                   
                   <Button asChild variant="glass" size="lg" className="group-hover:bg-white group-hover:text-slate-900 transition-all duration-300">
                     <Link href="/products#charcoal">
                       Learn More
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Link>
                   </Button>
                 </div>
               </div>
             </div>
             
-            {/* Enhanced Premium Firewood */}
-            <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-900 via-orange-900 to-amber-900 text-white hover-lift cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative p-16">
-                <div className="space-y-8">
-                  <div className="flex items-center space-x-6">
-                    <div className="h-20 w-20 rounded-3xl bg-gradient-to-br from-amber-500 via-orange-600 to-amber-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-elegant-lg">
-                      <Truck className="h-10 w-10 text-white" />
+            {/* Restaurant Ayin Shisha Charcoal */}
+            <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-900 via-orange-900 to-red-900 text-white hover-lift cursor-pointer">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative p-12">
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-red-500 via-orange-600 to-red-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-elegant-lg">
+                      <Truck className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-4xl font-black">Premium Firewood</h3>
-                      <p className="text-xl text-amber-200 font-medium">Seasoned hardwood logs</p>
+                      <h3 className="text-2xl font-black">Restaurant Ayin Shisha</h3>
+                      <p className="text-lg text-red-200 font-medium">Commercial Grade</p>
                     </div>
                   </div>
                   
-                  <p className="text-xl text-amber-200 leading-relaxed font-medium">
-                    Our seasoned firewood is kiln-dried to optimal moisture content, 
-                    providing excellent burning characteristics and consistent quality.
+                  <p className="text-lg text-red-200 leading-relaxed font-medium">
+                    Premium charcoal for restaurant hookah service with commercial grade quality, 
+                    consistent performance and restaurant approval.
                   </p>
                   
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">Kiln Dried</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">Ready to Burn</span>
-                      </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Commercial grade quality</span>
                     </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">Consistent Size</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <CheckCircle className="h-6 w-6 text-green-400" />
-                        <span className="text-lg font-bold">Sustainable</span>
-                      </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Consistent performance</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Restaurant approved</span>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-white/20">
+                    <div className="flex justify-between items-center">
+                      <span className="text-red-200 font-medium">Price:</span>
+                      <span className="text-xl font-bold text-red-400">400 USD/Tonne</span>
+                    </div>
+                  </div>
+                  
+                  <Button asChild variant="glass" size="lg" className="group-hover:bg-white group-hover:text-red-900 transition-all duration-300">
+                    <Link href="/products#charcoal">
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Non-Sparking Acacia Charcoal (Barbecue) */}
+            <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-900 via-orange-900 to-amber-900 text-white hover-lift cursor-pointer">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative p-12">
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-600 to-amber-700 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-elegant-lg">
+                      <Star className="h-8 w-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-black">Non-Sparking Acacia</h3>
+                      <p className="text-lg text-amber-200 font-medium">Barbecue Charcoal</p>
+                    </div>
+                  </div>
+                  
+                  <p className="text-lg text-amber-200 leading-relaxed font-medium">
+                    Safe barbecue charcoal with non-sparking safety feature, made from premium 
+                    acacia wood with consistent quality and perfect for barbecue.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Non-sparking safety</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Perfect for barbecue</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-base font-bold">Premium acacia wood</span>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-white/20">
+                    <div className="flex justify-between items-center">
+                      <span className="text-amber-200 font-medium">Price:</span>
+                      <span className="text-xl font-bold text-amber-400">350 USD/Tonne</span>
                     </div>
                   </div>
                   
                   <Button asChild variant="glass" size="lg" className="group-hover:bg-white group-hover:text-amber-900 transition-all duration-300">
-                    <Link href="/products#firewood">
+                    <Link href="/products#charcoal">
                       Learn More
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Link>
                   </Button>
                 </div>
@@ -517,7 +567,7 @@ export default function Home() {
             </h2>
             <p className="text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-medium">
               Ready to discuss your import/export needs? Our experienced team is here to provide 
-              personalized solutions and competitive quotes for your business.
+              personalized solutions for your business.
             </p>
           </div>
           
@@ -658,7 +708,7 @@ export default function Home() {
                 <span className="block">Journey Today</span>
               </h2>
               <p className="text-2xl lg:text-3xl text-white/90 leading-relaxed font-medium">
-                Get in touch with our expert team for a personalized quote and discover 
+                Get in touch with our expert team and discover 
                 how we can help grow your business with our premium products and reliable service.
               </p>
             </div>
@@ -666,7 +716,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-8 justify-center">
               <Button asChild size="xl" variant="glass" className="px-12 py-6 text-xl font-bold hover-lift-glow">
                 <Link href="/contact">
-                  Get Free Quote Today
+                  Contact Us Today
                   <ArrowRight className="ml-3 h-7 w-7" />
                 </Link>
               </Button>

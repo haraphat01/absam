@@ -13,7 +13,6 @@ import {
   Users
 } from 'lucide-react'
 
-import { ContactForm } from './contact-form'
 import { cn } from '@/lib/utils'
 
 const contactInfo = [
@@ -182,56 +181,33 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Contact Information Section */}
       <section className="py-16 lg:py-24">
         <div className="container-wide">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="order-2 lg:order-1"
-            >
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">
-                  Send us a Message
-                </h2>
-                <p className="text-muted-foreground text-lg">
-                  Fill out the form below and we&apos;ll get back to you within 24 hours.
-                </p>
-              </div>
-              <ContactForm />
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Contact Information
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Reach out to us through phone or email. We&apos;re here to help with all your import and export needs.
+            </p>
+          </motion.div>
 
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="order-1 lg:order-2"
-            >
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-4">
-                  Contact Information
-                </h2>
-                <p className="text-muted-foreground text-lg">
-                  Reach out to us through any of these channels.
-                </p>
-              </div>
-
-              <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="space-y-6"
-              >
-                {contactInfo.map((info, index) => (
-                  <ContactInfoCard key={index} info={info} index={index} />
-                ))}
-              </motion.div>
-            </motion.div>
-          </div>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          >
+            {contactInfo.map((info, index) => (
+              <ContactInfoCard key={index} info={info} index={index} />
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -278,11 +254,12 @@ export function ContactPage() {
               Ready to Get Started?
             </h2>
             <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              Join hundreds of satisfied clients who trust us with their import and export needs.
+              Join hundreds of satisfied clients who trust us with their import and export needs. 
+              Contact us directly via phone or email.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+2341234567890"
+                href="tel:+2347018222950"
                 className="inline-flex items-center justify-center px-8 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200"
               >
                 <Phone className="mr-2 h-5 w-5" />

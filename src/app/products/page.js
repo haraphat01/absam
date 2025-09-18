@@ -239,16 +239,16 @@ export default function ProductsPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {/* Restaurant Grade Charcoal */}
+            {/* Hookah Shisha (Ayin Fingers Charcoal) */}
             <Card className="hover-lift hover-glow group relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <CardHeader className="relative">
                 <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-orange-500/10 to-orange-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Flame className="h-8 w-8 text-orange-600" />
                 </div>
-                <CardTitle className="text-xl">Restaurant Grade</CardTitle>
+                <CardTitle className="text-xl">Hookah Shisha</CardTitle>
                 <CardDescription className="text-base">
-                  Premium charcoal for commercial kitchens
+                  Ayin Fingers Charcoal - Premium hookah charcoal
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative">
@@ -256,61 +256,61 @@ export default function ProductsPage() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-muted-foreground">Heat Output:</span>
-                      <div className="font-semibold text-orange-600">7,500+ BTU/lb</div>
+                      <div className="font-semibold text-orange-600">High</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Burn Time:</span>
-                      <div className="font-semibold text-orange-600">3-4 hours</div>
+                      <div className="font-semibold text-orange-600">Extended</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Ash Content:</span>
-                      <div className="font-semibold text-green-600">&lt;3%</div>
+                      <div className="font-semibold text-green-600">Minimal</div>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Moisture:</span>
-                      <div className="font-semibold text-blue-600">&lt;5%</div>
+                      <span className="text-muted-foreground">Shape:</span>
+                      <div className="font-semibold text-blue-600">Finger Style</div>
                     </div>
                   </div>
                   
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Consistent high heat output</span>
+                      <span>Perfect for hookah smoking</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Minimal smoke production</span>
+                      <span>Long-lasting burn</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Food-safe certification</span>
+                      <span>Consistent heat output</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Uniform size grading</span>
+                      <span>Premium quality</span>
                     </li>
                   </ul>
                   
                   <div className="pt-4 border-t border-slate-100">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-muted-foreground">Available Sizes:</span>
-                      <span className="font-semibold">20kg, 50kg bags</span>
+                      <span className="text-muted-foreground">Price:</span>
+                      <span className="font-semibold text-orange-600">450 USD/Tonne</span>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* BBQ Premium Charcoal */}
+            {/* Restaurant Ayin Shisha Charcoal */}
             <Card className="hover-lift hover-glow group relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <CardHeader className="relative">
                 <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-red-500/10 to-red-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Thermometer className="h-8 w-8 text-red-600" />
                 </div>
-                <CardTitle className="text-xl">BBQ Premium</CardTitle>
+                <CardTitle className="text-xl">Restaurant Ayin Shisha</CardTitle>
                 <CardDescription className="text-base">
-                  Perfect for grilling and barbecue enthusiasts
+                  Premium charcoal for restaurant hookah service
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative">
@@ -318,61 +318,61 @@ export default function ProductsPage() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-muted-foreground">Heat Output:</span>
-                      <div className="font-semibold text-red-600">8,000+ BTU/lb</div>
+                      <div className="font-semibold text-red-600">High</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Burn Time:</span>
-                      <div className="font-semibold text-red-600">4-5 hours</div>
+                      <div className="font-semibold text-red-600">Extended</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Ash Content:</span>
-                      <div className="font-semibold text-green-600">&lt;2%</div>
+                      <div className="font-semibold text-green-600">Minimal</div>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Moisture:</span>
-                      <div className="font-semibold text-blue-600">&lt;4%</div>
+                      <span className="text-muted-foreground">Grade:</span>
+                      <div className="font-semibold text-blue-600">Restaurant</div>
                     </div>
                   </div>
                   
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Superior flavor enhancement</span>
+                      <span>Commercial grade quality</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Quick ignition properties</span>
+                      <span>Consistent performance</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Even heat distribution</span>
+                      <span>Restaurant approved</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Premium hardwood blend</span>
+                      <span>Reliable supply</span>
                     </li>
                   </ul>
                   
                   <div className="pt-4 border-t border-slate-100">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-muted-foreground">Available Sizes:</span>
-                      <span className="font-semibold">5kg, 10kg, 20kg</span>
+                      <span className="text-muted-foreground">Price:</span>
+                      <span className="font-semibold text-red-600">400 USD/Tonne</span>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Industrial Grade Charcoal */}
+            {/* Non-Sparking Acacia Charcoal (Barbecue) */}
             <Card className="hover-lift hover-glow group relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-slate-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <CardHeader className="relative">
                 <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-slate-500/10 to-slate-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Factory className="h-8 w-8 text-slate-600" />
                 </div>
-                <CardTitle className="text-xl">Industrial Grade</CardTitle>
+                <CardTitle className="text-xl">Non-Sparking Acacia</CardTitle>
                 <CardDescription className="text-base">
-                  High-volume applications and manufacturing
+                  Barbecue charcoal - Safe and reliable
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative">
@@ -380,45 +380,45 @@ export default function ProductsPage() {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-muted-foreground">Heat Output:</span>
-                      <div className="font-semibold text-slate-600">7,000+ BTU/lb</div>
+                      <div className="font-semibold text-slate-600">High</div>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Burn Time:</span>
-                      <div className="font-semibold text-slate-600">5-6 hours</div>
+                      <div className="font-semibold text-slate-600">Long</div>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Ash Content:</span>
-                      <div className="font-semibold text-green-600">&lt;4%</div>
+                      <span className="text-muted-foreground">Safety:</span>
+                      <div className="font-semibold text-green-600">Non-Sparking</div>
                     </div>
                     <div>
-                      <span className="text-muted-foreground">Moisture:</span>
-                      <div className="font-semibold text-blue-600">&lt;6%</div>
+                      <span className="text-muted-foreground">Wood Type:</span>
+                      <div className="font-semibold text-blue-600">Acacia</div>
                     </div>
                   </div>
                   
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Cost-effective bulk pricing</span>
+                      <span>Non-sparking safety feature</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Consistent quality batches</span>
+                      <span>Perfect for barbecue</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Custom sizing available</span>
+                      <span>Premium acacia wood</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>Reliable supply chain</span>
+                      <span>Consistent quality</span>
                     </li>
                   </ul>
                   
                   <div className="pt-4 border-t border-slate-100">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-muted-foreground">Available Sizes:</span>
-                      <span className="font-semibold">Bulk, 1-ton bags</span>
+                      <span className="text-muted-foreground">Price:</span>
+                      <span className="font-semibold text-slate-600">350 USD/Tonne</span>
                     </div>
                   </div>
                 </div>
@@ -430,7 +430,7 @@ export default function ProductsPage() {
             <Button asChild size="lg" className="hover-lift bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 px-8 py-4 text-lg font-semibold">
               <Link href="/contact">
                 <Flame className="mr-3 h-6 w-6" />
-                Request Charcoal Quote
+                Contact Us
               </Link>
             </Button>
           </div>
@@ -648,7 +648,7 @@ export default function ProductsPage() {
             <Button asChild size="lg" className="hover-lift bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 px-8 py-4 text-lg font-semibold">
               <Link href="/contact">
                 <TreePine className="mr-3 h-6 w-6" />
-                Request Firewood Quote
+                Contact Us
               </Link>
             </Button>
           </div>
@@ -764,7 +764,7 @@ export default function ProductsPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button asChild size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 hover:text-primary/90 px-8 py-4 text-lg font-semibold hover-lift">
                 <Link href="/contact">
-                  Get Product Quote
+                  Contact Us
                   <ArrowRight className="ml-3 h-6 w-6" />
                 </Link>
               </Button>
